@@ -1,0 +1,57 @@
+
+
+
+.hero-container
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rem;
+}
+
+.hero-container h2
+{
+  font-size: 2.5rem;
+  letter-spacing: .2rem;
+  
+}
+
+.hero-container p
+{
+  letter-spacing: .1rem;
+  font-size: 1.1rem;
+}
+
+
+.info-section 
+{
+  text-align: right;
+  display: block;
+}
+
+.info-section h2
+{
+  margin: 0;
+}
+
+.about-section
+{
+  margin: 10rem auto;
+}
+
+.about-section h3
+{
+  text-align: center;
+  font-size: 1.7rem;
+  padding-bottom: .9rem;
+  border-bottom: .1rem solid #131010;
+}
+
+.about-section h4
+{
+  font-size:1.3rem;
+}
+
+.about-section p
+{
+  font-size: 1.1rem;
+}
