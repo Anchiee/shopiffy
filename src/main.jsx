@@ -2,13 +2,16 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import "./Style/main.css"
-
+import SessionContextProvider from './ContextsProviders/SessionContextProvider.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   
     <StrictMode>
-      < App />
+      <SessionContextProvider>
+        <App/>
+      </SessionContextProvider>
+      
     </StrictMode>
   
 )

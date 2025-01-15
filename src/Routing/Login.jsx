@@ -31,10 +31,10 @@ function Login()
           
         </div>
 
-        <label htmlFor="username-input">Username</label>
+        <label htmlFor="username-input" className="label-login">Username</label>
         <Input InputType="text" InputPlaceholder="Enter your username" InputId="username-input"/>
 
-        <label htmlFor="password-input">Password</label>
+        <label htmlFor="password-input" className="label-login">Password</label>
         <Input InputType="password" InputPlaceholder="Enter your password" InputId="password-input"/>
 
         <SolidButton ButtonType="submit" ButtonText="Sign-in"/>

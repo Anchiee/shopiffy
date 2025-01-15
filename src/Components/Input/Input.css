@@ -6,7 +6,6 @@ input
   border: .1rem solid #131010;
   border-radius: .2rem;
   font-size: 1.3rem;
-  margin-bottom: 1.4rem;
   width:100%;
   box-sizing: border-box;
 }
@@ -14,4 +13,9 @@ input
 input::placeholder
 {
   color: #131010;
+}
+
+.input-error
+{
+  border: .1rem solid #a13a3a;
 }

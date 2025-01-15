@@ -4,6 +4,7 @@ body
   color: #131010;
   font-family: "Manrope", serif;
   margin: 0;
+  overflow: hidden;
 }
 
 html, body, #root
