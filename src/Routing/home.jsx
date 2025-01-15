@@ -1,5 +1,6 @@
 import Card from "../Components/Card/Card.jsx"
 import ThinButton from "../Components/Buttons/ThinButton/ThinButton.jsx"
+import Footer from "../Components/Footer/Footer.jsx"
 import "../style/Home.css"
 
 function Home()
@@ -39,6 +40,7 @@ function Home()
           </section>
 
       </main>
+      <Footer/>
       
     </>
   )

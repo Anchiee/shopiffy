@@ -5,7 +5,7 @@
 {
   display: flex;
   align-items: center;
-  margin-bottom: 10rem;
+  margin: 10rem 0;
 }
 
 .hero-container h2
