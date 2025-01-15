@@ -2,9 +2,25 @@ import Card from "../Components/Card/Card.jsx"
 import ThinButton from "../Components/Buttons/ThinButton/ThinButton.jsx"
 import Footer from "../Components/Footer/Footer.jsx"
 import "../style/Home.css"
+import { useContext } from "react"
+import { SessionContext } from "../Contexts/SessionContext.jsx"
+import { useNavigate } from "react-router-dom"
 
 function Home()
 {
+
+  const {userSession} = useContext(SessionContext)
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    if(userSession) {
+      navigate("/menu")
+    } 
+    else {
+      navigate("/login")
+    }
+  }
+
   return(
     <>
       <main>
@@ -12,7 +28,7 @@ function Home()
       <div className="hero-container">
             <section className="learn-more-section">
               <h2>Shop whenever you want, wherever you want</h2>
-              <ThinButton ButtonType="button" ButtonText="Learn more"/>
+              <ThinButton ButtonType="button" ButtonClick={handleClick} ButtonText="Learn more"/>
             </section>
 
             <section className="info-section">

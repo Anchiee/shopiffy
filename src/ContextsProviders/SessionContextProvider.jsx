@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SessionContext } from "../Contexts/SessionContext";
+import { SessionContext } from "../Contexts/SessionContext.jsx";
 
 
 function SessionContextProvider({children}) {

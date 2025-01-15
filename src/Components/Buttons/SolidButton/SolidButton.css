@@ -6,8 +6,8 @@
   font-family: "Manrope", serif;
   cursor: pointer;
   font-size: 1.4rem;
-  border:none;
-  background-color: #e0cfbd;
+  background-color: #aa9c8e;
+  border: .1rem solid #756a60;
   padding: .8rem 0;
   border-radius: .3rem;
   width: 100%;

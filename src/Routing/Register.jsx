@@ -2,13 +2,11 @@ import "../Style/Auth.css"
 import Input from "../Components/Input/Input.jsx"
 import SolidButton from "../Components/Buttons/SolidButton/SolidButton.jsx"
 import { NavLink } from "react-router-dom"
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import fontawesome from '@fortawesome/fontawesome'
-import { faDiscord, faGithub, faMicrosoft } from "@fortawesome/free-brands-svg-icons"
 import axios from "axios"
 import {useContext, useState} from "react"
 import { useNavigate } from "react-router-dom"
 import { SessionContext } from "../Contexts/SessionContext.jsx"
+import IconContainer from "../Components/Icon-Container/IconContainer.jsx"
 
 function Register()
 {
@@ -64,24 +62,11 @@ function Register()
   
 
 
-  fontawesome.library.add(faDiscord, faGithub, faMicrosoft)
+
   return(
     <section className="auth-section">
       <form onSubmit={handleSubmit} method="post" className="auth-container">
-        <div className="icon-container">
-          <a href="#">
-            <FontAwesomeIcon icon="fa-brands fa-discord" size="lg" />
-          </a>
-
-          <a href="#">
-            <FontAwesomeIcon icon="fa-brands fa-github" size="lg" />
-          </a>
-
-          <a href="#">
-            <FontAwesomeIcon icon="fa-brands fa-microsoft" size="lg" />
-          </a>
-          
-        </div>
+        <IconContainer/>
 
         <label htmlFor="username-input">Username</label>
         <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
