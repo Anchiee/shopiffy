@@ -11,12 +11,13 @@ html, body, #root
   height:100%;
 }
 
+
 .nav-container
 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5.3rem;
+  padding-left: 9.3rem;
   margin-bottom: 10rem;
 }
 
@@ -29,6 +30,11 @@ a
 .nav-container nav a.active
 {
   color: #826f6f;
+}
+
+nav
+{
+  padding-right: 7.6rem;
 }
 
 nav a
