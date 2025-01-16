@@ -11,6 +11,12 @@ html, body, #root
   height:100%;
 }
 
+button
+{
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
 
 .nav-container
 {
@@ -52,6 +58,15 @@ nav .active
 nav a:hover
 {
   opacity: .7;
+}
+
+.form-search
+{
+  display: flex;
+  align-items: center;
+  border: .1rem solid #131010;
+  border-radius: .2rem;
+  padding: .3rem 1.4rem;
 }
 
 main

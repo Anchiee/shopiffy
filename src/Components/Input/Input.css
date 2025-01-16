@@ -1,13 +1,22 @@
-input
+.normal-input, .input-error, .search-input
 {
   font-family: "Manrope", serif;
   outline: none;
   background: transparent;
-  border: .1rem solid #131010;
   border-radius: .2rem;
   font-size: 1.3rem;
   width:100%;
   box-sizing: border-box;
+}
+
+.search-input
+{
+  border:none;
+}
+
+.normal-input
+{
+  border: .1rem solid #131010;
 }
 
 input::placeholder
@@ -17,5 +26,6 @@ input::placeholder
 
 .input-error
 {
+  
   border: .1rem solid #a13a3a;
 }

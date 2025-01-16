@@ -1,0 +1,29 @@
+
+
+.button-layout
+{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+}
+
+.user-info
+{
+  position: absolute;
+  left: 93%;
+}
+
+.user
+{
+  padding: 0 .67rem;
+  position: relative;  
+  background-color: #af9986;
+  left: 1%;
+  z-index: 10;
+  visibility: visible;
+}
+
+
+
+
