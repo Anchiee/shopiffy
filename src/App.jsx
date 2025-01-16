@@ -9,6 +9,8 @@ import Menu from "./Routing/Menu.jsx"
 import { SessionContext } from "./Contexts/SessionContext.jsx"
 import { useContext, useEffect } from "react"
 import axios from "axios"
+import Settings from "./Routing/Settings.jsx"
+import Cart from "./Routing/Cart.jsx"
 
 function App() {
 
@@ -43,6 +45,8 @@ function App() {
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/menu" element={<Menu/>}/>
             <Route path="/" element={<Home/>}/>
+            <Route path="/settings" element={<Settings/>}/>
+            <Route path="/cart" element={<Cart/>}/>
           </Routes>
       </BrowserRouter>
         
