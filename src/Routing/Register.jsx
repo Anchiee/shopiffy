@@ -49,7 +49,7 @@ function Register()
       }
       else {
         navigate("/menu")
-        setSession(response.data.sessionUsername)
+        setSession({username: response.data.username, email: response.data.email})
       }
     })
     .catch(error => {

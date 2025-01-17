@@ -10,7 +10,7 @@ function Login()
 {
 
 
-  const {setSession} = useContext(SessionContext)
+  const {userSession, setSession} = useContext(SessionContext)
   const navigate = useNavigate()
 
   let [user, setUser] = useState({username: null, password: null})
@@ -45,7 +45,8 @@ function Login()
       }
       else {
         navigate("/menu")
-        setSession(response.data.sessionUsername)
+        setSession({username: response.data.username, email: response.data.email})
+        console.log(userSession);
       }
     })
     .catch(error => {
@@ -53,7 +54,7 @@ function Login()
     })
 
   }
-
+  
 
   return (
 

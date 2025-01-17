@@ -22,7 +22,7 @@ function Navigation()
       <div className="flex items-center justify-between pl-38 pt-7">
         <h1 className="text-2xl font-bold">Shopiffy</h1>
 
-        {userSession && path.pathname !== "/contact"  && path.pathname !== "/settings" &&
+        {userSession.username && path.pathname !== "/contact"  && path.pathname !== "/settings" &&
         path.pathname !== "/cart" && path.pathname !== "/" &&
           <form onSubmit={handleSearch} method="get" className="flex items-center border-2 border-solid border-softBlack 
           rounded-md py-1 px-6">
@@ -32,19 +32,20 @@ function Navigation()
             </button>
           </form>}
 
+
         <nav className="pr-28">
-          {!userSession && <NavLink to="/login" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Log-in</NavLink>}
-          {!userSession && <NavLink to="/register" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Sign-in</NavLink>}
-          {!userSession && <NavLink to="/" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Home</NavLink>}
+          {!userSession.username && <NavLink to="/login" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Log-in</NavLink>}
+          {!userSession.username && <NavLink to="/register" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Sign-in</NavLink>}
+          {!userSession.username && <NavLink to="/" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Home</NavLink>}
           
           <NavLink to="/contact" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Contact</NavLink>
-          {userSession && <NavLink to="/menu" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Menu</NavLink>}
-          {userSession && 
+          {userSession.username && <NavLink to="/menu" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Menu</NavLink>}
+          {userSession.username && 
           <NavLink to="/cart" className="px-8">
             <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
           </NavLink>}
 
-          {userSession && 
+          {userSession.username && 
           <NavLink to="/settings" className="px-8">
             <FontAwesomeIcon icon={faGear} size="lg"/>
           </NavLink>}

@@ -3,7 +3,7 @@ import { SessionContext } from "../Contexts/SessionContext.jsx";
 
 
 function SessionContextProvider({children}) {
-  let [userSession, setSession] = useState()
+  let [userSession, setSession] = useState({username: null, email: null})
 
   return (
 

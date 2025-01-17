@@ -21,13 +21,13 @@ function App() {
   useEffect( () => {
 
     axios
-    .get("http://localhost/shopiffy/server/endpoints/getsession.php", {
+    .get("http://localhost/shopiffy/server/endpoints/getuserinfo.php", {
       withCredentials: true
     })
     .then(response => {
       console.log(response.data)
       if(response.data.status == "success") {
-        setSession(response.data.username)
+        setSession({username: response.data.username, email: response.data.email})
       }
     })
     .catch(error => {

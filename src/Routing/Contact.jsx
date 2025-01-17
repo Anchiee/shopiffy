@@ -10,16 +10,16 @@ function Contact()
 
     <>
       <section className="h-full flex justify-center items-center flex-row my-10">
-        <div className="bg-softBrown-200 w-1/3 py-16 px-24">
-          <label htmlFor="input-title">Title</label>
+        <div className="bg-softBrown-200 w-1/3 py-16 px-24 rounded-md">
+          <label htmlFor="input-title" className="mt-6 block">Title</label>
           <Input InputType="text" InputPlaceholder="Enter the title" InputId="input-title"/>
 
-          <label htmlFor="input-email">Email</label>
+          <label htmlFor="input-email" className="mt-6 block">Email</label>
           <Input InputType="email" InputPlaceholder="Enter the email" InputId="input-email"/>
 
-          <label htmlFor="message-id">Message</label>
+          <label htmlFor="message-id" className="mt-6 block">Message</label>
           <textarea placeholder="Message detail here" id="message-id" className="resize-none font-Manrope outline-none 
-          bg-transparent border-2 border-solid border-softBlack rounded-md text-xl mb-6 size-full box-border placeholder: text-softBlack">
+          bg-transparent border-2 border-solid border-softBlack rounded-md text-xl mb-6 size-full box-border placeholder:text-softBlack">
           </textarea>
 
           <SolidButton ButtonType="submit" ButtonText="Send"/>
