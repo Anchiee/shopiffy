@@ -1,4 +1,3 @@
-import "../../Style/main.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import fontawesome from '@fortawesome/fontawesome'
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons"
