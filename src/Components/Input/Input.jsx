@@ -1,11 +1,12 @@
 
 import PropTypes from "prop-types"
-import "./Input.css"
+
 
 function Input(props)
 {
   return <input type={props.InputType} placeholder={props.InputPlaceholder} onChange={props.InputOnChange} 
-  className={props.InputClass ? props.InputClass : "normal-input"}
+  className={props.InputClass ? "border-2 border-solid border-red-700 font-Manrope outline-none bg-transparent rounded-md text-xl size-full box-border placeholder:text-softBlack" 
+    : "border-2 border-solid border-softBlack font-Manrope outline-none bg-transparent rounded-md text-xl size-full box-border placeholder:text-softBlack"}
   id={props.InputId}/>
 }
 

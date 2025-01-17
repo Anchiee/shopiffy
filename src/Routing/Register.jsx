@@ -1,4 +1,3 @@
-import "../Style/Auth.css"
 import Input from "../Components/Input/Input.jsx"
 import SolidButton from "../Components/Buttons/SolidButton/SolidButton.jsx"
 import { NavLink } from "react-router-dom"
@@ -14,9 +13,9 @@ function Register()
   const navigate = useNavigate()
 
   let [user, setUser] = useState({username: null, email: null, password: null, confirmPassword: null})
-  let [errorMessage, setErrorMessage] = useState(null)
+  let [errorMessage, setErrorMessage] = useState("empty message")
+  let [errorStatus, setErrorStatus] = useState(false)
   let [inputErrorClass, setInputErrorClass] = useState(null)
-  let [labelErrorClass, setLabelErrorClass] = useState(null)
 
   const handleUsername = (e) => {
     setUser(u => ({...u, username: e.target.value}))
@@ -45,8 +44,8 @@ function Register()
       
       if(response.data.status === "error") {
         setInputErrorClass("input-error")
-        setLabelErrorClass("error")
         setErrorMessage("*" + response.data.message)
+        setErrorStatus(true)
       }
       else {
         navigate("/menu")
@@ -64,29 +63,29 @@ function Register()
 
 
   return(
-    <section className="auth-section">
-      <form onSubmit={handleSubmit} method="post" className="auth-container">
+    <section className="flex justify-center items-center">
+      <form onSubmit={handleSubmit} method="post" className="inline bg-softBrown-200 text-xl rounded-md py-6 px-24 mt-7 w-1/3">
         <IconContainer/>
 
         <label htmlFor="username-input">Username</label>
         <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
-        <p className={labelErrorClass}>{errorMessage}</p>
-
+        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
+        
         <label htmlFor="password-input">Password</label>
         <Input InputType="password" InputPlaceholder="Enter your password" InputOnChange={handlePassword} InputClass={inputErrorClass} InputId="password-input"/>
-        <p className={labelErrorClass}>{errorMessage}</p>
+        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
 
         <label htmlFor="password-confirm-input">Confirm password</label>
         <Input InputType="password" InputPlaceholder="Confirm your password" InputOnChange={handleConfirmPassword} InputClass={inputErrorClass} InputId="password-confirm-input"/>
-        <p className={labelErrorClass}>{errorMessage}</p>
+        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
 
         <label htmlFor="email-input">Email</label>
         <Input InputType="text" InputPlaceholder="Enter your email" InputOnChange={handleEmail} InputClass={inputErrorClass} InputId="email-input"/>
-        <p className={labelErrorClass}>{errorMessage}</p>
+        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
 
         <SolidButton ButtonType="submit" ButtonText="Sign-in"/>
 
-        <p>Already have an account? <NavLink to="/login">Log-in</NavLink></p>
+        <p>Already have an account? <NavLink to="/login" className="underline">Log-in</NavLink></p>
       </form>
     </section>
 

@@ -1,7 +1,6 @@
 import Card from "../Components/Card/Card.jsx"
 import ThinButton from "../Components/Buttons/ThinButton/ThinButton.jsx"
 import Footer from "../Components/Footer/Footer.jsx"
-import "../style/Home.css"
 import { useContext } from "react"
 import { SessionContext } from "../Contexts/SessionContext.jsx"
 import { useNavigate } from "react-router-dom"
@@ -23,22 +22,22 @@ function Home()
 
   return(
     <>
-      <main>
+      <main className="w-4/5 my-0 mx-auto">
 
-      <div className="hero-container">
-            <section className="learn-more-section">
-              <h2>Shop whenever you want, wherever you want</h2>
+      <div className="flex items-center my-40">
+            <section className="text-left inline">
+              <h2 className="text-4xl tracking-widest w-3/4 mb-8">Shop whenever you want, wherever you want</h2>
               <ThinButton ButtonType="button" ButtonClick={handleClick} ButtonText="Learn more"/>
             </section>
 
-            <section className="info-section">
-              <h2>Join to over thousands of people satisfied</h2>
-              <p>What are you waiting for? Sign now!</p>
+            <section className="text-right inline">
+              <h2 className="text-4xl m-0">Join to over thousands of people satisfied</h2>
+              <p className="tracking-widest text-lg block my-6">What are you waiting for? Sign now!</p>
             </section>
       </div>  
 
-          <section className="about-section">
-            <h3>About us</h3>
+          <section className="my-40 mx-auto">
+            <h3 className="text-center text-2xl pb-4 border-b-2 border-softBlack">About us</h3>
             <Card HeaderText="Who are we?" ParagraphText=" We are a passionate team dedicated to providing high-quality products and exceptional customer service. 
                                           Our mission is to create a shopping experience that’s easy, enjoyable, and trustworthy. 
                                           Whether you’re here for essentials or unique finds, 

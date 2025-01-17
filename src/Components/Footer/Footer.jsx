@@ -9,11 +9,11 @@ function Footer()
   fontawesome.library.add(faDiscord, faEnvelope)
 
   return(
-    <footer>
-      <div className="footer-info">
+    <footer className="flex flex-row items-center justify-evenly size-full bg-softBrown-200 pt-8">
+      <div className="pb-8">
         <h3>Shopiffy {new Date().getFullYear()}. All rights reserved</h3>
         <p>This project is open source. 
-          <a href="https://github.com/Anchiee/shopiffy" target="blank">
+          <a href="https://github.com/Anchiee/shopiffy" target="blank" className="ml-2 underline">
             Repository
           </a>
         </p>

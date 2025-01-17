@@ -12,6 +12,7 @@ import axios from "axios"
 import Settings from "./Routing/Settings.jsx"
 import Cart from "./Routing/Cart.jsx"
 
+
 function App() {
 
   const {setSession} = useContext(SessionContext)
@@ -37,6 +38,7 @@ function App() {
   return(
 
     <>  
+
       <BrowserRouter>
         <Navigation/>          
         <Routes>

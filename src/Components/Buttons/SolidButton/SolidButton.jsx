@@ -1,9 +1,15 @@
-import "./SolidButton.css"
+
 import PropTypes from "prop-types"
 
 function SolidButton(props)
 {
-  return <button type={props.ButtonType} className="solid-button" onClick={props.ButtonClick}>{props.ButtonText}</button>
+  return <button 
+    type={props.ButtonType} 
+    className="block mx-auto my-8 font-Manrope cursor-pointer text-2xl bg-softBrown-200 border-2 border-softBrown-300 
+    py-4 size-full rounded-md transition-opacity hover:opacity-70" 
+    onClick={props.ButtonClick}>
+    {props.ButtonText}
+    </button>
 }
 
 SolidButton.propTypes = {
