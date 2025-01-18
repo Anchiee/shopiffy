@@ -9,7 +9,7 @@ function Contact()
   return(
 
     <>
-      <section className="h-full flex justify-center items-center flex-row my-10">
+      <section className="h-full flex justify-center items-center flex-row">
         <div className="bg-softBrown-200 w-1/3 py-16 px-24 rounded-md">
           <label htmlFor="input-title" className="mt-6 block">Title</label>
           <Input InputType="text" InputPlaceholder="Enter the title" InputId="input-title"/>

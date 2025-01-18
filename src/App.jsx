@@ -1,9 +1,8 @@
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route, useLocation} from "react-router-dom"
 import Navigation from "./Components/Nav/Nav.jsx"
 import Register from "./Routing/Register.jsx"
 import Login from "./Routing/Login.jsx"
 import Contact from "./Routing/Contact.jsx"
-import { BrowserRouter } from 'react-router-dom'
 import Home from "./Routing/Home.jsx"
 import Menu from "./Routing/Menu.jsx"
 import { SessionContext } from "./Contexts/SessionContext.jsx"
@@ -16,7 +15,7 @@ import Cart from "./Routing/Cart.jsx"
 function App() {
 
   const {setSession} = useContext(SessionContext)
-
+  const path = useLocation()
 
   useEffect( () => {
 
@@ -39,8 +38,7 @@ function App() {
 
     <>  
 
-      <BrowserRouter>
-        <Navigation/>          
+        {path.pathname != "/register" && path.pathname != "/login" && <Navigation/>}          
         <Routes>
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login/>}/>
@@ -50,7 +48,6 @@ function App() {
             <Route path="/settings" element={<Settings/>}/>
             <Route path="/cart" element={<Cart/>}/>
           </Routes>
-      </BrowserRouter>
         
 
     </>

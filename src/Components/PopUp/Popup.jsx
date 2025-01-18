@@ -1,26 +1,41 @@
 import PropTypes from "prop-types"
 import Input from "../Input/Input"
+import { useContext } from "react"
+import { PopUpContext } from "../../Contexts/PopUpContext"
+import { PopUpOptionContext } from "../../Contexts/PopUpOptionContext"
 
-function PopUp(props)
+function PopUp()
 {
 
+  let {PopUpStatus, setPopUpStatus} = useContext(PopUpContext)
+  const {PopUpOption} = useContext(PopUpOptionContext)
+
+  const hidePopUp = () => {
+    setPopUpStatus(false)
+  }
+
+
+  console.log(PopUpOption.labelText)
+ 
   return(
 
-    <section className={props.PopupStatus}>
+    PopUpStatus && (
+      <section>
       <div className="bg-softBrown-100 px-5 py-14 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md ">
         
         <div className="my-6 block">
-          <label htmlFor="username" className="font-bold">USERNAME</label>
-          <Input InputPlaceholder="Enter your username" InputType="text" InputId="username"/>
+          <label htmlFor={PopUpOption.htmlFor} className="font-bold">{PopUpOption.labelText}</label>
+          <Input InputPlaceholder={PopUpOption.placeholder} InputType="text" InputId={PopUpOption.id}/>
         </div>
         
         <div className="my-6 block">
-          <label htmlFor="password" className="font-bold">PASSWORD</label>
-          <Input InputPlaceholder="Enter your password" InputType="password" InputId="password"/>
+          <label htmlFor="password" className="font-bold">{PopUpOption.labelText == "PASSWORD" ? "NEW PASSWORD" : "PASSWORD"}</label>
+          <Input InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} 
+          InputType="password" InputId="password"/>
         </div>
 
         <div className="ml-36">
-          <button className="mx-5">Close</button>
+          <button className="mx-5" onClick={hidePopUp}>Close</button>
 
           <form className="inline">
             <button className="bg-softBrown-200 py-1 px-4 rounded-md">Save</button>
@@ -29,13 +44,13 @@ function PopUp(props)
         </div>
 
       </div>
-    </section>
+    </section>)
 
   )
 }
 
 PopUp.propTypes = {
-  PopupStatus: PropTypes.string.isRequired
+  popUpStatus: PropTypes.string.isRequired
 }
 
 export default PopUp

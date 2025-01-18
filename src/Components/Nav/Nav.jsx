@@ -1,5 +1,5 @@
-import { NavLink, useLocation } from "react-router-dom"
-import { useContext } from "react"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
+import { useContext, useEffect } from "react"
 import {SessionContext} from "../../Contexts/SessionContext.jsx"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import fontawesome from "@fortawesome/fontawesome"
@@ -9,12 +9,19 @@ function Navigation()
 {
   fontawesome.library.add(faSearch, faBars, faRightFromBracket, faGear, faShoppingCart)
   const {userSession} = useContext(SessionContext)
+  const navigate = useNavigate()
 
   const path = useLocation()
 
   const handleSearch = () => {
     console.log("sli");
   }
+
+  useEffect(() => {
+    if(!userSession) {
+      navigate("/login")
+    }
+  }, [userSession])
 
   return(
 
