@@ -24,6 +24,7 @@ export default {
         Manrope: ["Manrope", "serif"],
       },
       spacing: {
+        "13": "3.4rem",
         "18": "4.5rem",
         "19": "4.8rem",
         "38": "9.5rem"

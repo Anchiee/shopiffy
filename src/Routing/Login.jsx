@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { useState, useContext } from "react"
 import { SessionContext } from "../Contexts/SessionContext"
 import axios from "axios"
+import AnimatedPage from "../Components/AnimatedPage/AnimatedPage"
 
 function Login()
 {
@@ -57,28 +58,28 @@ function Login()
   
 
   return (
+    <AnimatedPage>
+      <section className="flex justify-center items-center">
+        <form onSubmit={handleSubmit} method="post" className="inline bg-softBrown-200 text-xl rounded-md py-6 px-24 mt-32 w-1/3">
 
-    <section className="flex justify-center items-center mt-12">
-      <form onSubmit={handleSubmit} method="post" className="inline bg-softBrown-200 text-xl rounded-md py-6 px-24 mt-16 w-1/3">
+          <IconContainer/>
+        
 
-        <IconContainer/>
-      
+          <label htmlFor="username-input">Username</label>
+          <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
+          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
 
-        <label htmlFor="username-input">Username</label>
-        <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
-        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
+          <label htmlFor="password-input" >Password</label>
+          <Input InputType="password" InputPlaceholder="Enter your password"  InputOnChange={handlePassword} InputClass={inputErrorClass} InputId="password-input"/>
+          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
 
-        <label htmlFor="password-input" >Password</label>
-        <Input InputType="password" InputPlaceholder="Enter your password"  InputOnChange={handlePassword} InputClass={inputErrorClass} InputId="password-input"/>
-        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
+          <SolidButton ButtonType="submit" ButtonText="Log-in"/>
 
-        <SolidButton ButtonType="submit" ButtonText="Log-in"/>
+          <p className="text-center">New to shopiffy? <NavLink to="/register" className="underline">Sign-in</NavLink></p>
 
-        <p className="text-center">New to shopiffy? <NavLink to="/register" className="underline">Sign-in</NavLink></p>
-
-      </form>
-    </section>
-
+        </form>
+      </section>
+    </AnimatedPage>
 
   )
 }

@@ -6,6 +6,7 @@ import {useContext, useState} from "react"
 import { useNavigate } from "react-router-dom"
 import { SessionContext } from "../Contexts/SessionContext.jsx"
 import IconContainer from "../Components/Icon-Container/IconContainer.jsx"
+import AnimatedPage from "../Components/AnimatedPage/AnimatedPage.jsx"
 
 function Register()
 {
@@ -63,31 +64,33 @@ function Register()
 
 
   return(
-    <section className="flex justify-center items-center">
-      <form onSubmit={handleSubmit} method="post" className="inline bg-softBrown-200 text-lg rounded-md py-6 px-24 mt-7 w-1/3">
-        <IconContainer/>
+    <AnimatedPage>
+      <section className="flex justify-center items-center">
+        <form onSubmit={handleSubmit} method="post" className="inline bg-softBrown-200 text-lg rounded-md py-6 px-24 mt-7 w-1/3">
+          <IconContainer/>
 
-        <label htmlFor="username-input">Username</label>
-        <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
-        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
-        
-        <label htmlFor="password-input">Password</label>
-        <Input InputType="password" InputPlaceholder="Enter your password" InputOnChange={handlePassword} InputClass={inputErrorClass} InputId="password-input"/>
-        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
+          <label htmlFor="username-input">Username</label>
+          <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
+          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
+          
+          <label htmlFor="password-input">Password</label>
+          <Input InputType="password" InputPlaceholder="Enter your password" InputOnChange={handlePassword} InputClass={inputErrorClass} InputId="password-input"/>
+          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
 
-        <label htmlFor="password-confirm-input">Confirm password</label>
-        <Input InputType="password" InputPlaceholder="Confirm your password" InputOnChange={handleConfirmPassword} InputClass={inputErrorClass} InputId="password-confirm-input"/>
-        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
+          <label htmlFor="password-confirm-input">Confirm password</label>
+          <Input InputType="password" InputPlaceholder="Confirm your password" InputOnChange={handleConfirmPassword} InputClass={inputErrorClass} InputId="password-confirm-input"/>
+          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
 
-        <label htmlFor="email-input">Email</label>
-        <Input InputType="text" InputPlaceholder="Enter your email" InputOnChange={handleEmail} InputClass={inputErrorClass} InputId="email-input"/>
-        <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
+          <label htmlFor="email-input">Email</label>
+          <Input InputType="text" InputPlaceholder="Enter your email" InputOnChange={handleEmail} InputClass={inputErrorClass} InputId="email-input"/>
+          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
 
-        <SolidButton ButtonType="submit" ButtonText="Sign-in"/>
+          <SolidButton ButtonType="submit" ButtonText="Sign-in"/>
 
-        <p>Already have an account? <NavLink to="/login" className="underline">Log-in</NavLink></p>
-      </form>
-    </section>
+          <p>Already have an account? <NavLink to="/login" className="underline">Log-in</NavLink></p>
+        </form>
+      </section>
+    </AnimatedPage>
 
   )
   

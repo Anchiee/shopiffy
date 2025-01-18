@@ -5,6 +5,7 @@ import { PopUpContext } from "../Contexts/PopUpContext"
 import { PopUpOptionContext } from "../Contexts/PopUpOptionContext"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import AnimatedPage from "../Components/AnimatedPage/AnimatedPage"
 
 function Settings()
 { 
@@ -15,7 +16,7 @@ function Settings()
   const navigate = useNavigate()
 
   const showPopup = (PopUpLabelText, PopUphtmlFor, PopUpPlaceholder, PopUpId) => {
-    setPopUpStatus("opacity-1 transition-all pointer-events-auto size-full mb-19 absolute bg-transparent-300")
+    setPopUpStatus("opacity-1 transition-all pointer-events-auto size-full mb-13 absolute bg-transparent-300")
     setPopUpOption({labelText: PopUpLabelText, htmlFor: PopUphtmlFor, placeholder: PopUpPlaceholder, id: PopUpId})
     document.body.classList.add("no-scroll")
   }
@@ -60,7 +61,8 @@ function Settings()
 
 
   return(
-      <section className="flex justify-center items-center h-5/6 mt-10">
+    <AnimatedPage>
+      <section className="flex justify-center items-center h-5/6 mt-10 mb-">
         <div className="bg-softBrown-200 py-14 w-1/3 px-8 rounded-md">
           <img src={"src/assets/defaultProfile.jpg"} alt="profile picture" width="150" className="rounded-md"/>
           
@@ -129,6 +131,7 @@ function Settings()
         <PopUp/>
         
       </section>
+    </AnimatedPage>
   )
 }
 

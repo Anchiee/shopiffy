@@ -47,9 +47,8 @@ function App() {
   return(
 
     <>  
-
         {path.pathname != "/register" && path.pathname != "/login" && <Navigation/>}          
-        <Routes>
+        <Routes key={path.pathname} location={path}>
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/contact" element={<Contact/>}/>
@@ -58,8 +57,6 @@ function App() {
             <Route path="/settings" element={<Settings/>}/>
             <Route path="/cart" element={<Cart/>}/>
           </Routes>
-        
-
     </>
 
   )
