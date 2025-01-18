@@ -6,7 +6,7 @@ function ThinButton(props)
   return (
     <button 
       type={props.ButtonType} 
-      className="bg-transparent cursor-pointer font-Manrope border-solid border-2 border-black rounded-md py-3 px-5 text-softBlack text-xl 
+      className="bg-transparent-100 cursor-pointer font-Manrope border-solid border-2 border-black rounded-md py-3 px-5 text-softBlack text-xl 
       transition-colors hover:bg-softBlack hover:text-softBrown-100" 
       onClick={props.ButtonClick}>
       {props.ButtonText}

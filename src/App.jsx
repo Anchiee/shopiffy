@@ -1,4 +1,4 @@
-import {Routes, Route, useLocation} from "react-router-dom"
+import {Routes, Route, useLocation, useNavigate} from "react-router-dom"
 import Navigation from "./Components/Nav/Nav.jsx"
 import Register from "./Routing/Register.jsx"
 import Login from "./Routing/Login.jsx"
@@ -14,8 +14,9 @@ import Cart from "./Routing/Cart.jsx"
 
 function App() {
 
-  const {setSession} = useContext(SessionContext)
+  const {userSession, setSession} = useContext(SessionContext)
   const path = useLocation()
+  const navigate = useNavigate()
 
   useEffect( () => {
 
@@ -34,6 +35,15 @@ function App() {
     })
 
   }, [])
+
+  useEffect(() => {
+
+    if(!userSession) {
+      navigate("/login")
+    }
+
+  }, [userSession])
+
   return(
 
     <>  

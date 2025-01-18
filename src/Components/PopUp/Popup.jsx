@@ -11,16 +11,15 @@ function PopUp()
   const {PopUpOption} = useContext(PopUpOptionContext)
 
   const hidePopUp = () => {
-    setPopUpStatus(false)
+    setPopUpStatus("opacity-0 transition-opacity pointer-events-none")
+    document.body.classList.remove("no-scroll")
   }
 
 
   console.log(PopUpOption.labelText)
  
   return(
-
-    PopUpStatus && (
-      <section>
+      <section className={PopUpStatus}>
       <div className="bg-softBrown-100 px-5 py-14 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md ">
         
         <div className="my-6 block">
@@ -38,13 +37,13 @@ function PopUp()
           <button className="mx-5" onClick={hidePopUp}>Close</button>
 
           <form className="inline">
-            <button className="bg-softBrown-200 py-1 px-4 rounded-md">Save</button>
+            <button className="bg-softBrown-200 py-2 px-4 rounded-md">Save</button>
           </form>
           
         </div>
 
       </div>
-    </section>)
+    </section>
 
   )
 }

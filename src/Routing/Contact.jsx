@@ -19,7 +19,7 @@ function Contact()
 
           <label htmlFor="message-id" className="mt-6 block">Message</label>
           <textarea placeholder="Message detail here" id="message-id" className="resize-none font-Manrope outline-none 
-          bg-transparent border-2 border-solid border-softBlack rounded-md text-xl mb-6 size-full box-border placeholder:text-softBlack">
+          bg-transparent-100 border-2 border-solid border-softBlack rounded-md text-xl mb-6 size-full box-border placeholder:text-softBlack">
           </textarea>
 
           <SolidButton ButtonType="submit" ButtonText="Send"/>

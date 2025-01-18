@@ -1,5 +1,5 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import { useContext, useEffect } from "react"
+import { NavLink, useLocation } from "react-router-dom"
+import { useContext } from "react"
 import {SessionContext} from "../../Contexts/SessionContext.jsx"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import fontawesome from "@fortawesome/fontawesome"
@@ -9,20 +9,12 @@ function Navigation()
 {
   fontawesome.library.add(faSearch, faBars, faRightFromBracket, faGear, faShoppingCart)
   const {userSession} = useContext(SessionContext)
-  const navigate = useNavigate()
 
   const path = useLocation()
 
   const handleSearch = () => {
     console.log("sli");
   }
-
-  useEffect(() => {
-    if(!userSession) {
-      navigate("/login")
-    }
-  }, [userSession])
-
   return(
 
     <>
@@ -33,7 +25,7 @@ function Navigation()
         path.pathname !== "/cart" && path.pathname !== "/" &&
           <form onSubmit={handleSearch} method="get" className="flex items-center border-2 border-solid border-softBlack 
           rounded-md py-1 px-6">
-            <input type="text" className="border-none bg-transparent placeholder:text-softBlack outline-none text-lg" placeholder="Search for a product"/>
+            <input type="text" className="border-none bg-transparent-100 placeholder:text-softBlack outline-none text-lg" placeholder="Search for a product"/>
             <button type="submit">
               <FontAwesomeIcon icon={faSearch} size="lg"/>
             </button>

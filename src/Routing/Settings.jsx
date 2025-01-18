@@ -13,8 +13,9 @@ function Settings()
   const {setPopUpOption} = useContext(PopUpOptionContext)
 
   const showPopup = (PopUpLabelText, PopUphtmlFor, PopUpPlaceholder, PopUpId) => {
-    setPopUpStatus("visible")
+    setPopUpStatus("opacity-1 transition-all pointer-events-auto size-full mb-19 absolute bg-transparent-300")
     setPopUpOption({labelText: PopUpLabelText, htmlFor: PopUphtmlFor, placeholder: PopUpPlaceholder, id: PopUpId})
+    document.body.classList.add("no-scroll")
   }
 
 
