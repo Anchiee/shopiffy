@@ -27,9 +27,6 @@ function Register()
   const handlePassword = (e) => {
     setUser(u => ({...u, password: e.target.value}))
   }
-  const handleConfirmPassword = (e) => {
-    setUser(u => ({...u, confirmPassword: e.target.value}))
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -66,26 +63,23 @@ function Register()
   return(
     <AnimatedPage>
       <section className="flex justify-center items-center">
-        <form onSubmit={handleSubmit} method="post" className="inline bg-softBrown-200 text-lg rounded-md py-6 px-24 mt-7 w-1/3">
-          <IconContainer/>
+        <form onSubmit={handleSubmit} method="post" className="inline bg-slate-200 text-xl rounded-md py-8 px-24 mt-10 w-1/3 shadow-gray-300-500/50 shadow-lg">
 
           <label htmlFor="username-input">Username</label>
           <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
-          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
           
           <label htmlFor="password-input">Password</label>
           <Input InputType="password" InputPlaceholder="Enter your password" InputOnChange={handlePassword} InputClass={inputErrorClass} InputId="password-input"/>
-          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
-
-          <label htmlFor="password-confirm-input">Confirm password</label>
-          <Input InputType="password" InputPlaceholder="Confirm your password" InputOnChange={handleConfirmPassword} InputClass={inputErrorClass} InputId="password-confirm-input"/>
-          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
 
           <label htmlFor="email-input">Email</label>
           <Input InputType="text" InputPlaceholder="Enter your email" InputOnChange={handleEmail} InputClass={inputErrorClass} InputId="email-input"/>
-          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "p-0 m-0 invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
 
           <SolidButton ButtonType="submit" ButtonText="Sign-in"/>
+
+          <IconContainer/>
 
           <p>Already have an account? <NavLink to="/login" className="underline">Log-in</NavLink></p>
         </form>

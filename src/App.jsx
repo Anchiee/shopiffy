@@ -48,7 +48,7 @@ function App() {
 
     <>  
         {path.pathname != "/register" && path.pathname != "/login" && <Navigation/>}          
-        <Routes key={path.pathname} location={path}>
+        <Routes>
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/contact" element={<Contact/>}/>

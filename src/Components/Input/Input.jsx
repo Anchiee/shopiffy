@@ -5,8 +5,8 @@ import PropTypes from "prop-types"
 function Input(props)
 {
   return <input type={props.InputType} placeholder={props.InputPlaceholder} onChange={props.InputOnChange} 
-  className={props.InputClass ? "border-2 border-solid border-red-700 font-Manrope outline-none bg-transparent-100 rounded-md text-lg py-2 pl-3 size-full box-border placeholder:text-softBlack" 
-    : "border-2 border-solid border-softBlack font-Manrope outline-none bg-transparent-100 rounded-md text-lg size-full box-border py-2 pl-3 placeholder:text-softBlack"}
+  className={props.InputClass ? "block w-full rounded-md bg-transparent-100 px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-red-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-" 
+    : "block my-3 w-full rounded-md bg-transparent-100 px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"}
   id={props.InputId}/>
 }
 

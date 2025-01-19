@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { useContext } from "react"
 import {SessionContext} from "../../Contexts/SessionContext.jsx"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -11,27 +11,13 @@ function Navigation()
   fontawesome.library.add(faSearch, faBars, faRightFromBracket, faGear, faShoppingCart)
   const {userSession} = useContext(SessionContext)
 
-  const path = useLocation()
 
-  const handleSearch = () => {
-    console.log("sli");
-  }
   return(
 
     <>
       
         <div className="flex items-center justify-between pl-38 pt-7">
           <h1 className="text-2xl font-bold">Shopiffy</h1>
-
-          {userSession.username && path.pathname !== "/contact"  && path.pathname !== "/settings" &&
-          path.pathname !== "/cart" && path.pathname !== "/" &&
-              <form onSubmit={handleSearch} method="get" className="flex items-center border-2 border-solid border-softBlack 
-              rounded-md py-1 px-6">
-                <input type="text" className="border-none bg-transparent-100 placeholder:text-softBlack outline-none text-lg" placeholder="Search for a product"/>
-                <button type="submit">
-                  <FontAwesomeIcon icon={faSearch} size="lg"/>
-                </button>
-              </form>}
 
 
           <nav className="pr-28">

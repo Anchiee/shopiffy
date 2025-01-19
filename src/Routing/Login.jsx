@@ -60,22 +60,24 @@ function Login()
   return (
     <AnimatedPage>
       <section className="flex justify-center items-center">
-        <form onSubmit={handleSubmit} method="post" className="inline bg-softBrown-200 text-xl rounded-md py-6 px-24 mt-32 w-1/3">
-
-          <IconContainer/>
-        
-
-          <label htmlFor="username-input">Username</label>
+        <form onSubmit={handleSubmit} method="post" className="inline bg-slate-200 text-xl rounded-md py-10 px-24 mt-10 w-1/3 shadow-gray-300-500/50 shadow-lg">
+      
+          <h1 className="text-center text-3xl font-bold mb-13">Log-in</h1>
+          <label htmlFor="username-input" className="font-bold">Username</label>
           <Input InputType="text" InputPlaceholder="Enter your username" InputOnChange={handleUsername} InputClass={inputErrorClass} InputId="username-input"/>
-          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
 
-          <label htmlFor="password-input" >Password</label>
+          <label htmlFor="password-input" className="font-bold">Password</label>
           <Input InputType="password" InputPlaceholder="Enter your password"  InputOnChange={handlePassword} InputClass={inputErrorClass} InputId="password-input"/>
-          <p className={errorStatus ? "p-0 m-0 text-red-800 visible" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-8 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
 
           <SolidButton ButtonType="submit" ButtonText="Log-in"/>
 
-          <p className="text-center">New to shopiffy? <NavLink to="/register" className="underline">Sign-in</NavLink></p>
+          <IconContainer/>
+
+          <p className="text-center">New to shopiffy?
+            <NavLink to="/register" className="px-2 underline">Sign-up </NavLink>
+          </p>
 
         </form>
       </section>

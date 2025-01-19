@@ -10,8 +10,8 @@ function Contact()
   return(
     <>
       <AnimatedPage>
-        <section className="h-full flex justify-center items-center flex-row">
-          <div className="bg-softBrown-200 w-1/3 py-16 px-24 my-10 rounded-md">
+        <section className="h-full flex justify-center items-center flex-row my-6.9">
+          <div className="inline bg-slate-200 text-base rounded-md py-8 px-10 mt-2 w-1/3 shadow-gray-300-500/50 shadow-lg">
             <label htmlFor="input-title" className="mt-6 block">Title</label>
             <Input InputType="text" InputPlaceholder="Enter the title" InputId="input-title"/>
 
@@ -19,8 +19,7 @@ function Contact()
             <Input InputType="email" InputPlaceholder="Enter the email" InputId="input-email"/>
 
             <label htmlFor="message-id" className="mt-6 block">Message</label>
-            <textarea placeholder="Message detail here" id="message-id" className="resize-none font-Manrope outline-none 
-            bg-transparent-100 border-2 border-solid border-softBlack rounded-md text-xl mb-6 size-full box-border placeholder:text-softBlack">
+            <textarea placeholder="Message detail here" id="message-id" className="block resize-none my-3 w-full rounded-md bg-transparent-100 px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600">
             </textarea>
 
             <SolidButton ButtonType="submit" ButtonText="Send"/>
