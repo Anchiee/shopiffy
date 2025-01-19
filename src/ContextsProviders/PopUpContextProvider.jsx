@@ -4,7 +4,7 @@ import { PopUpContext } from "../Contexts/PopUpContext"
 
 function PopUpContextProvider({children})
 {
-  const [PopUpStatus, setPopUpStatus] = useState("opacity-0")
+  const [PopUpStatus, setPopUpStatus] = useState("opacity-0 pointer-events-none")
   return(
 
     <PopUpContext.Provider value={{PopUpStatus, setPopUpStatus}}>

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import Input from "../Input/Input"
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { PopUpContext } from "../../Contexts/PopUpContext"
 import { PopUpOptionContext } from "../../Contexts/PopUpOptionContext"
 
@@ -9,15 +9,39 @@ function PopUp()
 {
 
   let {PopUpStatus, setPopUpStatus} = useContext(PopUpContext)
-  const {PopUpOption} = useContext(PopUpOptionContext)
+  const {PopUpOption, setPopUpOption} = useContext(PopUpOptionContext)
+
+
+  let [UserData, setUserData] = useState({UserLabel: PopUpOption.labelText, newInfo: null, password: null })
+
+  useEffect(() => {
+    setUserData(prevState => ({...prevState, UserLabel: PopUpOption.labelText}))
+
+  }, [PopUpOption.labelText])
+
+  const handleUserChange = (e) => {
+    setUserData(prevState => ({...prevState, newInfo: e.target.value}))
+  }
+
+  const handlePassword = (e) => {
+    setUserData(prevState => ({...prevState, password: e.target.value}))  
+  }
 
   const hidePopUp = () => {
     setPopUpStatus("opacity-0 transition-opacity pointer-events-none")
+    setPopUpOption({labelText: null, htmlFor: null, placeholder: null, id: null})
+    setUserData({UserLabel: PopUpOption.labelText, newInfo: null, password: null})
     document.body.classList.remove("no-scroll")
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
-  console.log(PopUpOption.labelText)
+    console.log("The chosen change option:", UserData.UserLabel)
+    console.log("new data:", UserData.newInfo)
+    console.log("password:", UserData.password)
+  }
+
  
   return(
       <section className={PopUpStatus}>
@@ -25,18 +49,18 @@ function PopUp()
         
         <div className="my-6 block">
           <label htmlFor={PopUpOption.htmlFor} className="font-bold">{PopUpOption.labelText}</label>
-          <Input InputPlaceholder={PopUpOption.placeholder} InputType="text" InputId={PopUpOption.id}/>
+          <Input InputPlaceholder={PopUpOption.placeholder} InputType="text" InputId={PopUpOption.id} InputOnChange={handleUserChange} InputValue={UserData.newInfo || ""}/>
         </div>
         
         <div className="my-6 block">
           <label htmlFor="password" className="font-bold">{PopUpOption.labelText == "PASSWORD" ? "NEW PASSWORD" : "PASSWORD"}</label>
-          <Input InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} 
-          InputType="password" InputId="password"/>
+          <Input InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} InputOnChange={handlePassword} 
+          InputType="password" InputId="password" InputValue={UserData.password || ""}/>
         </div>
 
         <button className="mx-5" onClick={hidePopUp}>Close</button>
 
-        <form className="inline">
+        <form onSubmit={handleSubmit} className="inline">
           <button className="font-Manrope cursor-pointer text-base bg-orange-300
   py-3 px-5 font-bold rounded-md transition-opacity box-border hover:opacity-70">Save</button>
         </form>

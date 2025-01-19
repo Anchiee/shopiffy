@@ -8,9 +8,9 @@ function Footer()
   fontawesome.library.add(faDiscord, faEnvelope)
 
   return(
-    <footer className="flex flex-row items-center justify-evenly py-9 bg-softBrown-200 pt-8">
-      <div className="pb-8">
-        <h3>Shopiffy {new Date().getFullYear()}. All rights reserved</h3>
+    <footer className="flex flex-row items-center justify-evenly py-11 bg-slate-200 shadow-slate-200 pt-8">
+      <div>
+        <h3>Shopiffy {new Date().getFullYear()}. The project is under the MIT license</h3>
         <p>This project is open source. 
           <a href="https://github.com/Anchiee/shopiffy" target="blank" className="ml-2 underline">
             Repository
@@ -18,7 +18,7 @@ function Footer()
         </p>
       </div>
       
-      <div className="footer-info">
+      <div>
         <h4>Contact info</h4>
         <p>
         <FontAwesomeIcon icon="fa-regular fa-envelope" size="lg" />

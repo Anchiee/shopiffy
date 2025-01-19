@@ -16,7 +16,7 @@ function Contact()
             <Input InputType="text" InputPlaceholder="Enter the title" InputId="input-title"/>
 
             <label htmlFor="input-email" className="mt-6 block">Email</label>
-            <Input InputType="email" InputPlaceholder="Enter the email" InputId="input-email"/>
+            <Input InputType="email" InputPlaceholder="Enter your email" InputId="input-email"/>
 
             <label htmlFor="message-id" className="mt-6 block">Message</label>
             <textarea placeholder="Message detail here" id="message-id" className="block resize-none my-3 w-full rounded-md bg-transparent-100 px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600">
