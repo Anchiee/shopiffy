@@ -25,7 +25,7 @@ function Home()
   return(
     <>
       <AnimatedPage>
-        <section className="w-4/5 my-0 mx-auto">
+        <section className="w-4/5 my-0 mx-auto" >
 
         <div className="flex items-center my-40">
               <section className="text-left inline">
@@ -39,7 +39,7 @@ function Home()
               </section>
         </div>  
 
-            <section className="my-40 mx-auto">
+            <section className="my-40 mx-auto ">
               <h3 className="text-center text-2xl pb-4 border-b-2 border-softBlack">About us</h3>
               <Card HeaderText="Who are we?" ParagraphText=" We are a passionate team dedicated to providing high-quality products and exceptional customer service. 
                                             Our mission is to create a shopping experience that’s easy, enjoyable, and trustworthy. 

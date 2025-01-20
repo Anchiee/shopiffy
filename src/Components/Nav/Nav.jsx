@@ -4,7 +4,7 @@ import {SessionContext} from "../../Contexts/SessionContext.jsx"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import fontawesome from "@fortawesome/fontawesome"
 import { faSearch, faBars, faRightFromBracket, faGear, faShoppingCart } from "@fortawesome/free-solid-svg-icons"
-
+import AnimatedPage from "../AnimatedPage/AnimatedPage.jsx"
 
 function Navigation()
 {
@@ -15,7 +15,7 @@ function Navigation()
   return(
 
     <>
-      
+      <AnimatedPage>
         <div className="flex items-center justify-between pl-38 pt-7">
           <h1 className="text-2xl font-bold">Shopiffy</h1>
 
@@ -39,6 +39,7 @@ function Navigation()
           </nav>
 
         </div>  
+      </AnimatedPage>
     </>
     
 
