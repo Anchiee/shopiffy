@@ -3,19 +3,3 @@
 @tailwind utilities;
 
 
-html, body, #root
-{
-  height: 100%;
-}
-
-body
-{
-  color: #131010;
-  font-family: "Manrope", serif;
-  background-color: #D0B8A8;
-}
-
-.no-scroll
-{
-  overflow: hidden;
-}

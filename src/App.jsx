@@ -14,7 +14,7 @@ import Cart from "./Routing/Cart.jsx"
 
 function App() {
 
-  const {userSession, setSession} = useContext(SessionContext)
+  const { setSession} = useContext(SessionContext)
   const path = useLocation()
   const navigate = useNavigate()
 
@@ -29,20 +29,15 @@ function App() {
       if(response.data.status == "success") {
         setSession({username: response.data.username, email: response.data.email})
       }
+      else if(response.data.status == "error" && (path.pathname == "/settings" || path.pathname == "/menu" || path.pathname == "/cart")) {
+        navigate("/login")
+      }
     })
     .catch(error => {
       console.log(error)
     })
 
   }, [])
-
-  useEffect(() => {
-
-    if(!userSession) {
-      navigate("/login")
-    }
-
-  }, [userSession])
 
   return(
 
