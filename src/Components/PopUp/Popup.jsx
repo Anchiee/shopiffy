@@ -31,7 +31,6 @@ function PopUp()
     setPopUpStatus("opacity-0 transition-opacity pointer-events-none")
     setPopUpOption({labelText: null, htmlFor: null, placeholder: null, id: null})
     setUserData({UserLabel: PopUpOption.labelText, newInfo: null, password: null})
-    document.body.classList.remove("no-scroll")
   }
 
   const handleSubmit = (e) => {
