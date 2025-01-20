@@ -14,7 +14,7 @@ function Home()
   console.log(userSession)
 
   const handleClick = () => {
-    if(!userSession) {
+    if(userSession.username) {
       navigate("/menu")
     } 
     else {
