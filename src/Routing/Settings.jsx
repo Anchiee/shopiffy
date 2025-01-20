@@ -89,7 +89,7 @@ function Settings()
             
             <div className="w-1/5 inline">
             <button className="font-Manrope cursor-pointer text-base bg-orange-300
-    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70" onClick={() => showPopup("PASSWORD", "password", "Enter your password", "password")}>
+    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70" onClick={() => showPopup("NEW PASSWORD", "password", "Enter your password", "password")}>
                 Edit
               </button>
             </div>

@@ -79,11 +79,11 @@ function PopUp()
         <div className="my-6 block">
           <label htmlFor={PopUpOption.htmlFor} className="font-bold">{PopUpOption.labelText}</label>
           <Input InputPlaceholder={PopUpOption.placeholder} 
-          InputType={PopUpOption.labelText == "PASSWORD" ? "password" : "text"} InputId={PopUpOption.id} InputOnChange={handleUserChange} InputValue={UserData.newInfo || ""}/>
+          InputType={PopUpOption.labelText == "NEW PASSWORD" ? "password" : "text"} InputId={PopUpOption.id} InputOnChange={handleUserChange} InputValue={UserData.newInfo || ""}/>
         </div>
         
         <div className="my-6 block">
-          <label htmlFor="password" className="font-bold">{PopUpOption.labelText == "PASSWORD" ? "NEW PASSWORD" : "PASSWORD"}</label>
+          <label htmlFor="password" className="font-bold">PASSWORD</label>
           <Input InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} InputOnChange={handlePassword} 
           InputType="password" InputId="password" InputValue={UserData.password || ""}/>
         </div>

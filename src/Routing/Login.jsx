@@ -29,6 +29,7 @@ function Login()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     axios
     .post("http://localhost/shopiffy/server/endpoints/login.php", user, {
       withCredentials: true,
