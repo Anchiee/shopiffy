@@ -1,15 +1,17 @@
 import PropTypes from "prop-types"
 import Input from "../Input/Input"
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect} from "react"
 import { PopUpContext } from "../../Contexts/PopUpContext"
 import { PopUpOptionContext } from "../../Contexts/PopUpOptionContext"
-
+import axios from "axios"
+import { SessionContext } from "../../Contexts/SessionContext"
 
 function PopUp()
 {
 
   let {PopUpStatus, setPopUpStatus} = useContext(PopUpContext)
   const {PopUpOption, setPopUpOption} = useContext(PopUpOptionContext)
+  const {setSession} = useContext(SessionContext)
 
 
   let [UserData, setUserData] = useState({UserLabel: PopUpOption.labelText, newInfo: null, password: null })
@@ -39,6 +41,34 @@ function PopUp()
     console.log("The chosen change option:", UserData.UserLabel)
     console.log("new data:", UserData.newInfo)
     console.log("password:", UserData.password)
+
+    axios
+    .post("http://localhost/shopiffy/server/endpoints/updateuser.php", UserData, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(response => {
+      console.log(response.data.message)
+
+      if(response.data.status == "success") {
+        
+        if(response.data.type == "username") {
+          const newData = response.data.message
+          setSession(prevState => ({...prevState, username: newData}))
+        }
+        else if(response.data.type == "email") {
+          const newData = response.data.message
+          setSession(prevState => ({...prevState, email: newData}))
+        }
+
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
   }
 
  
@@ -48,7 +78,8 @@ function PopUp()
         
         <div className="my-6 block">
           <label htmlFor={PopUpOption.htmlFor} className="font-bold">{PopUpOption.labelText}</label>
-          <Input InputPlaceholder={PopUpOption.placeholder} InputType="text" InputId={PopUpOption.id} InputOnChange={handleUserChange} InputValue={UserData.newInfo || ""}/>
+          <Input InputPlaceholder={PopUpOption.placeholder} 
+          InputType={PopUpOption.labelText == "PASSWORD" ? "password" : "text"} InputId={PopUpOption.id} InputOnChange={handleUserChange} InputValue={UserData.newInfo || ""}/>
         </div>
         
         <div className="my-6 block">

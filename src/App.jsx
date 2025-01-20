@@ -14,11 +14,11 @@ import Cart from "./Routing/Cart.jsx"
 
 function App() {
 
-  const { setSession} = useContext(SessionContext)
+  const {setSession} = useContext(SessionContext)
   const path = useLocation()
   const navigate = useNavigate()
 
-  useEffect( () => {
+  useEffect( () => {  
 
     axios
     .get("http://localhost/shopiffy/server/endpoints/getuserinfo.php", {
