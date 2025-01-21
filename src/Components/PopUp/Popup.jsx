@@ -13,6 +13,10 @@ function PopUp()
   const {PopUpOption, setPopUpOption} = useContext(PopUpOptionContext)
   const {setSession} = useContext(SessionContext)
 
+  let [errorMessage, setErrorMessage] = useState("empty message")
+  let [errorStatus, setErrorStatus] = useState(false)
+  let [inputErrorClass, setInputErrorClass] = useState(null)
+
 
   let [UserData, setUserData] = useState({UserLabel: PopUpOption.labelText, newInfo: null, password: null })
 
@@ -64,6 +68,11 @@ function PopUp()
         }
 
       }
+      else if(response.data.status === "error") {
+        setInputErrorClass("input-error")
+        setErrorMessage("*" + response.data.message)
+        setErrorStatus(true)
+      }
     })
     .catch(error => {
       console.log(error)
@@ -78,14 +87,16 @@ function PopUp()
         
         <div className="my-6 block">
           <label htmlFor={PopUpOption.htmlFor} className="font-bold">{PopUpOption.labelText}</label>
-          <Input InputPlaceholder={PopUpOption.placeholder} 
+          <Input InputPlaceholder={PopUpOption.placeholder} InputClass={inputErrorClass} 
           InputType={PopUpOption.labelText == "NEW PASSWORD" ? "password" : "text"} InputId={PopUpOption.id} InputOnChange={handleUserChange} InputValue={UserData.newInfo || ""}/>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
         </div>
         
         <div className="my-6 block">
           <label htmlFor="password" className="font-bold">PASSWORD</label>
           <Input InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} InputOnChange={handlePassword} 
-          InputType="password" InputId="password" InputValue={UserData.password || ""}/>
+          InputType="password" InputId="password" InputValue={UserData.password || ""} InputClass={inputErrorClass}/>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
         </div>
 
         <button className="mx-5" onClick={hidePopUp}>Close</button>
