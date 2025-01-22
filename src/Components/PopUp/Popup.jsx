@@ -18,25 +18,32 @@ function PopUp()
   let [inputErrorClass, setInputErrorClass] = useState(null)
 
 
-  let [UserData, setUserData] = useState({UserLabel: PopUpOption.labelText, newInfo: null, password: null })
+  let [UserData, setUserData] = useState({
+    UserLabel: PopUpOption.labelText, 
+    newInfo: null, 
+    password: null 
+  })
 
   useEffect(() => {
     setUserData(prevState => ({...prevState, UserLabel: PopUpOption.labelText}))
 
   }, [PopUpOption.labelText])
-
-  const handleUserChange = (e) => {
-    setUserData(prevState => ({...prevState, newInfo: e.target.value}))
-  }
-
-  const handlePassword = (e) => {
-    setUserData(prevState => ({...prevState, password: e.target.value}))  
-  }
+ 
 
   const hidePopUp = () => {
     setPopUpStatus("opacity-0 transition-opacity pointer-events-none")
-    setPopUpOption({labelText: null, htmlFor: null, placeholder: null, id: null})
-    setUserData({UserLabel: PopUpOption.labelText, newInfo: null, password: null})
+    setPopUpOption({
+      labelText: null, 
+      htmlFor: null, 
+      placeholder: null, 
+      id: null
+    })
+    
+    setUserData({
+      UserLabel: null, 
+      newInfo: null, 
+      password: null
+    })
   }
 
   const handleSubmit = (e) => {
@@ -67,10 +74,27 @@ function PopUp()
           setSession(prevState => ({...prevState, email: newData}))
         }
 
+        setErrorStatus(false)
+        setInputErrorClass(null)
+
+
+        setPopUpStatus("opacity-0 transition-opacity pointer-events-none")
+        setPopUpOption({
+          labelText: null, 
+          htmlFor: null, 
+          placeholder: null, 
+          id: null
+        })
+        
+        setUserData({
+          UserLabel: null, 
+          newInfo: null, 
+          password: null
+        })
       }
       else if(response.data.status === "error") {
         setInputErrorClass("input-error")
-        setErrorMessage("*" + response.data.message)
+        setErrorMessage(response.data.message)
         setErrorStatus(true)
       }
     })
@@ -87,15 +111,29 @@ function PopUp()
         
         <div className="my-6 block">
           <label htmlFor={PopUpOption.htmlFor} className="font-bold">{PopUpOption.labelText}</label>
-          <Input InputPlaceholder={PopUpOption.placeholder} InputClass={inputErrorClass} 
-          InputType={PopUpOption.labelText == "NEW PASSWORD" ? "password" : "text"} InputId={PopUpOption.id} InputOnChange={handleUserChange} InputValue={UserData.newInfo || ""}/>
+          
+          <Input 
+          InputPlaceholder={PopUpOption.placeholder} 
+          InputClass={inputErrorClass} 
+          InputType={PopUpOption.labelText == "NEW PASSWORD" ? "password" : "text"} 
+          InputId={PopUpOption.id} 
+          InputOnChange={(e) => {setUserData(prevState => ({...prevState, newInfo: e.target.value}))}} 
+          InputValue={UserData.newInfo || ""}/>
+          
           <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
         </div>
         
         <div className="my-6 block">
           <label htmlFor="password" className="font-bold">PASSWORD</label>
-          <Input InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} InputOnChange={handlePassword} 
-          InputType="password" InputId="password" InputValue={UserData.password || ""} InputClass={inputErrorClass}/>
+          
+          <Input 
+          InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} 
+          InputOnChange={(e) => {setUserData(prevState => ({...prevState, password: e.target.value}))}} 
+          InputType="password" 
+          InputId="password" 
+          InputValue={UserData.password || ""} 
+          InputClass={inputErrorClass}/>
+          
           <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
         </div>
 
@@ -103,7 +141,9 @@ function PopUp()
 
         <form onSubmit={handleSubmit} className="inline">
           <button className="font-Manrope cursor-pointer text-base bg-orange-300
-  py-3 px-5 font-bold rounded-md transition-opacity box-border hover:opacity-70">Save</button>
+  py-3 px-5 font-bold rounded-md transition-opacity box-border hover:opacity-70">
+            Save
+          </button>
         </form>
           
 

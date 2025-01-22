@@ -19,7 +19,6 @@ function Settings()
   const showPopup = (PopUpLabelText, PopUphtmlFor, PopUpPlaceholder, PopUpId) => {
     setPopUpStatus("opacity-1 transition-all pointer-events-auto size-full mb-8.5 fixed overflow-hidden bg-transparent-300 shadow-gray-300-500/50 shadow-lg")
     setPopUpOption({labelText: PopUpLabelText, htmlFor: PopUphtmlFor, placeholder: PopUpPlaceholder, id: PopUpId})
-    document.body.classList.add("no-scroll")
   }
 
   const handleLogOut = (e) => {

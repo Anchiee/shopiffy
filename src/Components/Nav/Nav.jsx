@@ -21,12 +21,31 @@ function Navigation()
 
 
           <nav className="pr-28">
-            {!userSession.username && <NavLink to="/login" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Log-in</NavLink>}
-            {!userSession.username && <NavLink to="/register" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Sign-in</NavLink>}
-            {!userSession.username && <NavLink to="/" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Home</NavLink>}
+            {!userSession.username && 
+            <NavLink to="/login" 
+            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Log-in</NavLink>
+            }
             
-            <NavLink to="/contact" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Contact</NavLink>
-            {userSession.username && <NavLink to="/menu" className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Menu</NavLink>}
+            
+            {!userSession.username && 
+            <NavLink to="/register" 
+            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Sign-in</NavLink>
+            }
+
+            {!userSession.username && 
+            <NavLink to="/" 
+            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Home</NavLink>
+            
+            }
+            
+            <NavLink to="/contact" 
+            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Contact</NavLink>
+            
+            {userSession.username && 
+            <NavLink to="/menu" 
+            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Menu</NavLink>
+            }
+            
             {userSession.username && 
             <NavLink to="/cart" className="px-8">
               <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
