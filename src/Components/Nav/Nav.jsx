@@ -16,44 +16,47 @@ function Navigation()
 
     <>
       <AnimatedPage>
-        <div className="flex items-center justify-between pl-38 pt-7">
-          <h1 className="text-2xl font-bold">Shopiffy</h1>
+        <div className="flex items-center justify-between pl-38 pt-7 py-6">
+
+          <nav>
+            <NavLink to="/" className="text-xl font-bold mr-5 tracking-wider">SHOPIFFY</NavLink>
+
+            <NavLink to="/contact" 
+            className="no-underline text-xl transition-opacity mx-5 hover:opacity-70">Contact</NavLink>
+
+            {userSession.username && 
+            <NavLink to="/menu" 
+            className="no-underline text-xl transition-opacity mx-5 hover:opacity-70">Menu</NavLink>
+            }
+          </nav>
+          
 
 
           <nav className="pr-28">
             {!userSession.username && 
             <NavLink to="/login" 
-            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Log-in</NavLink>
+            className="no-underline text-xl px-6 py-1 mx-5 outline outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
+            hover:text-slate-300 transition-all">
+              Sign-in
+            </NavLink>
             }
             
             
-            {!userSession.username && 
-            <NavLink to="/register" 
-            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Sign-in</NavLink>
-            }
-
-            {!userSession.username && 
-            <NavLink to="/" 
-            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Home</NavLink>
-            
-            }
-            
-            <NavLink to="/contact" 
-            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Contact</NavLink>
             
             {userSession.username && 
-            <NavLink to="/menu" 
-            className="no-underline text-2xl mx-8 transition-opacity hover:opacity-70">Menu</NavLink>
-            }
-            
-            {userSession.username && 
-            <NavLink to="/cart" className="px-8">
-              <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
+            <NavLink to="/cart" 
+            className="px-6 py-1 mx-5 outline outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
+            hover:text-slate-300 transition-all">
+              <FontAwesomeIcon icon={faShoppingCart}/>
+              <p className="inline text-base font-bold ml-1">Cart</p>
             </NavLink>}
 
             {userSession.username && 
-            <NavLink to="/settings" className="px-8">
-              <FontAwesomeIcon icon={faGear} size="lg"/>
+            <NavLink to="/settings" 
+            className="px-6 py-1 mx-10 outline outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
+            hover:text-slate-300 transition-all">
+              <FontAwesomeIcon icon={faGear}/>
+              <p className="inline text-base font-bold ml-1">Settings</p>
             </NavLink>}
           </nav>
 
