@@ -16,17 +16,18 @@ function Navigation()
 
     <>
       <AnimatedPage>
-        <div className="flex items-center justify-between pl-38 pt-7 py-6">
+        <div className="flex items-center justify-between pl-38 pt-7 py-6 bg-softBlack text-slate-400 
+        outline outline-1 outline-gray-700">
 
           <nav>
-            <NavLink to="/" className="text-xl font-bold mr-5 tracking-wider">SHOPIFFY</NavLink>
+            <NavLink to="/" className="text-base font-bold mr-5 tracking-wider">SHOPIFFY</NavLink>
 
             <NavLink to="/contact" 
-            className="no-underline text-xl transition-opacity mx-5 hover:opacity-70">Contact</NavLink>
+            className="no-underline text-base transition-opacity mx-5 hover:opacity-70">Contact</NavLink>
 
             {userSession.username && 
             <NavLink to="/menu" 
-            className="no-underline text-xl transition-opacity mx-5 hover:opacity-70">Menu</NavLink>
+            className="no-underline text-base transition-opacity mx-5 hover:opacity-70">Menu</NavLink>
             }
           </nav>
           
@@ -35,8 +36,8 @@ function Navigation()
           <nav className="pr-28">
             {!userSession.username && 
             <NavLink to="/login" 
-            className="no-underline text-xl px-6 py-1 mx-5 outline outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
-            hover:text-slate-300 transition-all">
+            className="no-underline text-base px-6 py-1 mx-5 outline outline-2 outline-slate-400 rounded-2xl hover:bg-slate-400 
+            hover:text-softBlack transition-all">
               Sign-in
             </NavLink>
             }

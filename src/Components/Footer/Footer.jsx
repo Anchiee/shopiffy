@@ -8,7 +8,8 @@ function Footer()
   fontawesome.library.add(faDiscord, faEnvelope)
 
   return(
-    <footer className="flex flex-row items-center justify-evenly py-6 bg-slate-200 shadow-slate-200 pt-8">
+    <footer className="flex flex-row items-center justify-evenly h-full py-6 bg-softBlack 
+    border-t-2 border-gray-700 shadow-slate-200  text-slate-400">
       <div>
         <h3>Shopiffy {new Date().getFullYear()}. The project is under the MIT license</h3>
         <p>This project is open source. 
@@ -20,15 +21,21 @@ function Footer()
       
       <div>
         <h4>Contact info</h4>
-        <p>
-        <FontAwesomeIcon icon="fa-regular fa-envelope" size="lg" />
+        
+
+        <div>
+          <FontAwesomeIcon icon="fa-regular fa-envelope" />
+          <p className="inline ml-1">
           wyhwtf@gmail.com
         </p>
-
-        <p>
-        <FontAwesomeIcon icon="fa-brands fa-discord" size="lg" />
-          anchie__
-        </p>
+        </div>
+        
+        <div>
+          <FontAwesomeIcon icon="fa-brands fa-discord" />
+          <p className="inline ml-1">
+            anchie__
+          </p>
+        </div>
       </div>
     </footer>
 

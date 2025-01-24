@@ -10,7 +10,7 @@ function Home()
       <AnimatedPage>
         <section id="about">
 
-        <div className="w-4/5 my-0 mx-auto">
+        <div className="w-4/5 my-0 mx-auto text-slate-400">
           <div className="flex items-center my-40">
                 <section className="text-left inline">
                   <h2 className="text-4xl tracking-widest w-3/4 mb-8">Shop whenever you want, wherever you want</h2>
@@ -24,7 +24,7 @@ function Home()
           </div>  
 
               <section className="my-40 mx-auto">
-                <h3 className="text-center text-2xl pb-4 border-b-2 border-softBlack">About us</h3>
+                <h3 className="text-center text-2xl pb-4 border-b-2 border-gray-700">About us</h3>
 
                 <div>
                   <h4 className="font-bold mt-10 text-xl">Who are we?</h4>
