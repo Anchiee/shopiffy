@@ -5,19 +5,22 @@ import SessionContextProvider from './ContextsProviders/SessionContextProvider.j
 import { BrowserRouter } from 'react-router-dom'
 import PopUpContextProvider from './ContextsProviders/PopUpContextProvider.jsx'
 import PopUpOptionContextProvider from './ContextsProviders/PopUpOptionContextProvider.jsx'
+import ProductContextProvider from './ContextsProviders/ProductContextProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   
     <StrictMode>
-      <SessionContextProvider>
-        <PopUpContextProvider>
-          <PopUpOptionContextProvider>
-            <BrowserRouter>
-              <App/>
-            </BrowserRouter>
-          </PopUpOptionContextProvider>
-        </PopUpContextProvider>
-      </SessionContextProvider>
+    <SessionContextProvider>
+    <PopUpContextProvider>
+    <PopUpOptionContextProvider>
+    <ProductContextProvider>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </ProductContextProvider>
+    </PopUpOptionContextProvider>
+    </PopUpContextProvider>
+    </SessionContextProvider>
     </StrictMode>
   
 )
