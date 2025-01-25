@@ -10,7 +10,7 @@ function Card(props)
         className="rounded-t-lg pl-5 py-7 h-1/2"  
         src={props.CardPath} alt="product image" width="200"/>
     </a>
-    <div className="px-5 pb-5">
+    <div className="px-5">
       <a href="#">
           <h2 className="text-base font-semibold tracking-tight text-softBlack">{props.CardName}</h2>
           <p className="mt-1 mb-4">{props.CardDescription}</p>
