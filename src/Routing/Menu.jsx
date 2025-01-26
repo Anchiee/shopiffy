@@ -5,31 +5,70 @@ import axios from "axios"
 import { ProductContext } from "../Contexts/ProductsContext";
 import { useEffect, useContext, useState } from "react";
 
+
 function Menu() {
   
   const {products, setProducts} = useContext(ProductContext)
+  let [errorStatus, setErrorStatus] = useState(false)
+
   let [isLoading, setIsLoading] = useState(true)
+  let [searchProduct, setSearchProduct] = useState({
+    product: null
+  })
+  let [filter, setFilter] = useState({
+    category: null,
+    brand: [],
+    os: null
+  })
 
   useEffect(() => {
-    axios
-    .get("http://localhost/shopiffy/server/endpoints/getproducts.php")
-    .then(response => {
-      console.log("Server response", response.data.products)
-      setProducts(response.data.products)
+    if(!products || products.length == 0) {
+      axios
+      .get("http://localhost/shopiffy/server/endpoints/getproducts.php")
+      .then(response => {
+        console.log("Server response", response.data.products)
+        setProducts(response.data.products)
+        setIsLoading(false)
+        
+      })
+      .catch(error => {
+        console.log(error)
+        setIsLoading(false)
+      })
+    }
+    else {
       setIsLoading(false)
-      
-    })
-    .catch(error => {
-      console.log(error)
-      setIsLoading(false)
-    })
-  
+    }
+    
   }, [])
 
 
   useEffect(() => {
-    console.log(products)
-  }, [products])
+    console.log(filter)
+  }, [filter])
+
+
+  const handleSearchProduct = (e) => {
+    e.preventDefault()
+    axios
+    .post("http://localhost/shopiffy/server/endpoints/getproductinfo.php", searchProduct)
+    .then(response => {
+      console.log(response.data)
+
+      if(response.data.status == "success") {
+        setErrorStatus(false)
+        setProducts(response.data.info);
+      } 
+      else {
+        setErrorStatus(response.data.message)
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+    console.log("Searching for a product:", searchProduct)
+  }
 
 
   
@@ -40,8 +79,9 @@ function Menu() {
             {/* filter section*/}
             <section className="flex flex-col gap-6 text-xl w-1/5 text-gray-600 pl-6 pr-3 border-r-2 border-gray-300">
               {/* Search Form */}
-              <form className="w-full my-3 flex flex-row gap-5">
-                <Input InputPlaceholder="Search a product" />
+              <form className="w-full my-3 flex flex-row gap-5" method="get" onSubmit={handleSearchProduct}>
+                <Input InputPlaceholder="Search a product" 
+                InputOnChange={(e) => setSearchProduct({product: e.target.value})} />
               </form>
 
               {/* Category Selector */}
@@ -77,13 +117,14 @@ function Menu() {
                     { label: "MSI", value: "msi" },
                     { label: "Huawei", value: "huawei" },
                   ].map((brand, index) => (
-                    <div className="inline-flex items-center" key={index}>
+                    <form className="inline-flex items-center" key={index}>
                       <label className="flex items-center cursor-pointer relative">
                         <input
                           value={brand.value}
                           type="checkbox"
                           className="peer h-4 w-4 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-400 checked:bg-blue-600 checked:border-blue-600"
                           id={`check-${index}`}
+                          onChange={(e) => setFilter(e.target.value)}
                         />
                         <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                           <svg
@@ -103,7 +144,7 @@ function Menu() {
                         </span>
                       </label>
                       <label className="text-base mx-1">{brand.label}</label>
-                    </div>
+                    </form>
                   ))}
                 </div>
                 <Input InputPlaceholder="Search a brand" InputId="search-brand" />
@@ -127,12 +168,19 @@ function Menu() {
             </section>
 
             {/* Products Content */}
-            <section className="py-6 px-5 grid grid-cols-3 gap-4 max-h-150 overflow-auto w-full ">
-            
-            {!isLoading && products.map((product, index) => (
-              <Card CardPath={product.path} CardName={product.name} CardDescription={product.description}
-              CardPrice={product.price} key={index}/>
-            ))}
+            <section className="py-6 px-5 grid grid-cols-3 grid-rows-2 gap-4 max-h-150 overflow-auto w-full ">
+              
+                {errorStatus && 
+                  <div className="col-start-2 my-auto">
+                    <h1 className="text-5xl font-bold my-3">Error</h1>
+                    <p className="text-2xl">{errorStatus}</p>
+                  </div>
+                }
+                {!isLoading && !errorStatus && products.map((product, index) => (
+                  <Card CardPath={product.path} CardName={product.name} CardDescription={product.description}
+                  CardPrice={product.price} key={index}/>
+                ))}
+              
             
             </section>
           </div>
