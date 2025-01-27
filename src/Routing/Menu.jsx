@@ -15,10 +15,8 @@ function Menu() {
   let [searchProduct, setSearchProduct] = useState({
     product: null
   })
-  let [filter, setFilter] = useState({
-    category: null,
-    brand: [],
-    os: null
+  let [select, setSelect] = useState({
+    product: null
   })
 
   useEffect(() => {
@@ -42,10 +40,6 @@ function Menu() {
     
   }, [])
 
-
-  useEffect(() => {
-    console.log(filter)
-  }, [filter])
 
 
   const handleSearchProduct = (e) => {
@@ -71,6 +65,36 @@ function Menu() {
   }
 
 
+
+
+  useEffect(() => {
+
+    if(select.product) {
+      axios
+      .post("http://localhost/shopiffy/server/endpoints/getproductinfo.php", select)
+      .then(response => {
+        console.log(response.data)
+
+        if(response.data.status == "success") {
+          setErrorStatus(false)
+          setProducts(response.data.info);
+        } 
+        else {
+          setErrorStatus(response.data.message)
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+      console.log("Searching for a product:", searchProduct)
+    }
+
+
+
+  }, [select])
+  
+
   
   return (
       <section className="w-11/12 mx-auto my-10 bg-slate-200 rounded-md shadow-md shadow-gray-500-500/50">
@@ -79,7 +103,7 @@ function Menu() {
             {/* filter section*/}
             <section className="flex flex-col gap-6 text-xl w-1/5 text-gray-600 pl-6 pr-3 border-r-2 border-gray-300">
               {/* Search Form */}
-              <form className="w-full my-3 flex flex-row gap-5" method="get" onSubmit={handleSearchProduct}>
+              <form className="w-full my-3 flex flex-row gap-5" method="post" onSubmit={handleSearchProduct}>
                 <Input InputPlaceholder="Search a product" 
                 InputOnChange={(e) => setSearchProduct({product: e.target.value})} />
               </form>
@@ -93,12 +117,13 @@ function Menu() {
                   name="product-type"
                   id="product-type"
                   className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400"
+                  onChange={(e) => setSelect({product: e.target.value})}
+
                 >
                   <option value="none">None</option>
-                  <option value="laptop">Laptops</option>
+                  <option value="laptops">Laptops</option>
                   <option value="tablets">Tablets</option>
                   <option value="phones">Phones</option>
-                  <option value="processors">Processors</option>
                 </select>
               </div>
 
@@ -124,7 +149,7 @@ function Menu() {
                           type="checkbox"
                           className="peer h-4 w-4 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-400 checked:bg-blue-600 checked:border-blue-600"
                           id={`check-${index}`}
-                          onChange={(e) => setFilter(e.target.value)}
+                         
                         />
                         <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                           <svg
@@ -157,7 +182,9 @@ function Menu() {
                   name="product-type"
                   id="product-type"
                   className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400"
-                >
+                  onChange={(e) => setSelect({product: e.target.value})}
+                  >
+
                   <option value="none">None</option>
                   <option value="linux">Linux</option>
                   <option value="windows">Windows</option>
@@ -171,7 +198,7 @@ function Menu() {
             <section className="py-6 px-5 grid grid-cols-3 grid-rows-2 gap-4 max-h-150 overflow-auto w-full ">
               
                 {errorStatus && 
-                  <div className="col-start-2 my-auto">
+                  <div>
                     <h1 className="text-5xl font-bold my-3">Error</h1>
                     <p className="text-2xl">{errorStatus}</p>
                   </div>
