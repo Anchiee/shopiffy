@@ -120,7 +120,7 @@ function Menu() {
 
   
   return (
-      <section className="w-11/12 mx-auto my-10 bg-slate-200 rounded-md shadow-md shadow-gray-500-500/50">
+      <section className="w-11/12 h-5/6 mx-auto my-10 bg-slate-200 rounded-md shadow-md shadow-gray-500-500/50">
         <AnimatedPage>
           <div className="flex">
             {/* filter section*/}
@@ -219,7 +219,7 @@ function Menu() {
             </section>
 
             {/* Products Content */}
-            <section className="py-6 px-5 grid grid-cols-3 grid-rows-2 gap-4 max-h-150 overflow-auto w-full ">
+            <section className="py-6 px-5 grid grid-cols-3  gap-4 max-h-150 overflow-auto w-full ">
               
                 {errorStatus && 
                   <div>
