@@ -24,4 +24,5 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #ebe1e1;
+  cursor: pointer;
 }

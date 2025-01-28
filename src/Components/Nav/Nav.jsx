@@ -16,10 +16,10 @@ function Navigation()
 
     <>
       <AnimatedPage>
-        <div className="flex items-center justify-between pl-38 pt-7 py-6 bg-softBlack text-slate-400 
+        <nav className="flex items-center justify-between pl-38 pt-7 py-6 bg-softBlack text-slate-400 
         outline outline-1 outline-gray-700">
 
-          <nav>
+          <div>
             <NavLink to="/" className="text-base font-bold mr-5 tracking-wider">SHOPIFFY</NavLink>
 
             <NavLink to="/contact" 
@@ -29,11 +29,11 @@ function Navigation()
             <NavLink to="/menu" 
             className="no-underline text-base transition-opacity mx-5 hover:opacity-70">Menu</NavLink>
             }
-          </nav>
+          </div>
           
 
 
-          <nav className="pr-28">
+          <div className="pr-28">
             {!userSession.username && 
             <NavLink to="/login" 
             className="no-underline text-base px-6 py-1 mx-5 outline outline-2 outline-slate-400 rounded-2xl hover:bg-slate-400 
@@ -59,9 +59,9 @@ function Navigation()
               <FontAwesomeIcon icon={faGear}/>
               <p className="inline text-base font-bold ml-1">Settings</p>
             </NavLink>}
-          </nav>
+          </div>
 
-        </div>  
+        </nav>  
       </AnimatedPage>
     </>
     

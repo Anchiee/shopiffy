@@ -15,9 +15,35 @@ function Menu() {
   let [searchProduct, setSearchProduct] = useState({
     product: null
   })
-  let [select, setSelect] = useState({
-    product: null
+
+  let [filterOptions, setFilterOptions] = useState({
+    category: null,
+    brands: [],
+    os: null
   })
+
+  const handleCategory = (e) => {
+    setFilterOptions({...filterOptions, category: e.target.value})
+  }
+
+  const handleBrand = (e) => {
+    const brandVal = e.target.value
+    let isChecked = e.target.checked
+
+    if(isChecked) {
+      setFilterOptions(prevState => ({...prevState, brands: [...prevState.brands, brandVal]}))
+    }
+    else {
+      setFilterOptions(prevState => ({...prevState, brands: 
+        prevState.brands.filter((brand) => brand !== brandVal)
+      }))
+    }
+  }
+
+  const handleOs = (e) => {
+    setFilterOptions({...filterOptions, os: e.target.value})
+  }
+
 
   useEffect(() => {
     if(!products || products.length == 0) {
@@ -41,17 +67,41 @@ function Menu() {
   }, [])
 
 
+  useEffect(() => {
+
+    axios
+    .post("http://localhost/shopiffy/server/endpoints/getproductsbyfilter.php", filterOptions, {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(response => {
+  
+      console.log("status", response.data)
+
+      if(response.data.status == "success") {
+        setProducts(response.data.products)
+      }
+      
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+  }, [filterOptions])
+
+
 
   const handleSearchProduct = (e) => {
     e.preventDefault()
     axios
-    .post("http://localhost/shopiffy/server/endpoints/getproductinfo.php", searchProduct)
+    .post("http://localhost/shopiffy/server/endpoints/getproductinfobyname.php", searchProduct)
     .then(response => {
       console.log(response.data)
 
       if(response.data.status == "success") {
         setErrorStatus(false)
-        setProducts(response.data.info);
+        setProducts(response.data.products);
       } 
       else {
         setErrorStatus(response.data.message)
@@ -67,33 +117,6 @@ function Menu() {
 
 
 
-  useEffect(() => {
-
-    if(select.product) {
-      axios
-      .post("http://localhost/shopiffy/server/endpoints/getproductinfo.php", select)
-      .then(response => {
-        console.log(response.data)
-
-        if(response.data.status == "success") {
-          setErrorStatus(false)
-          setProducts(response.data.info);
-        } 
-        else {
-          setErrorStatus(response.data.message)
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
-
-      console.log("Searching for a product:", searchProduct)
-    }
-
-
-
-  }, [select])
-  
 
   
   return (
@@ -116,9 +139,9 @@ function Menu() {
                 <select
                   name="product-type"
                   id="product-type"
-                  className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400"
-                  onChange={(e) => setSelect({product: e.target.value})}
-
+                  className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400 
+                  cursor-pointer"
+                  onChange={handleCategory}
                 >
                   <option value="none">None</option>
                   <option value="laptops">Laptops</option>
@@ -142,13 +165,14 @@ function Menu() {
                     { label: "MSI", value: "msi" },
                     { label: "Huawei", value: "huawei" },
                   ].map((brand, index) => (
-                    <form className="inline-flex items-center" key={index}>
+                    <div className="inline-flex items-center" key={index}>
                       <label className="flex items-center cursor-pointer relative">
                         <input
                           value={brand.value}
                           type="checkbox"
                           className="peer h-4 w-4 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-400 checked:bg-blue-600 checked:border-blue-600"
                           id={`check-${index}`}
+                          onChange={handleBrand}
                          
                         />
                         <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -169,10 +193,9 @@ function Menu() {
                         </span>
                       </label>
                       <label className="text-base mx-1">{brand.label}</label>
-                    </form>
+                    </div>
                   ))}
                 </div>
-                <Input InputPlaceholder="Search a brand" InputId="search-brand" />
               </div>
 
               {/* Operating System Selector */}
@@ -181,8 +204,9 @@ function Menu() {
                 <select
                   name="product-type"
                   id="product-type"
-                  className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400"
-                  onChange={(e) => setSelect({product: e.target.value})}
+                  className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400
+                  cursor-pointer"
+                  onChange={handleOs}
                   >
 
                   <option value="none">None</option>
