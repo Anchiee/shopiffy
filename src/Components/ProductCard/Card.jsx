@@ -1,20 +1,22 @@
 import PropTypes from "prop-types"
+import { NavLink } from "react-router-dom"
+
 
 function Card(props)
 {
   return(
   <div className="w-full max-w-sm bg-slate-300  rounded-lg shadow-sm hover:shadow-xl
   cursor-pointer transition-all">
-    <a href="#">
-        <img 
-        className="rounded-t-lg pl-5 py-7 h-1/2"  
-        src={props.CardPath} alt="product image" width="200"/>
-    </a>
+    <NavLink to="/ProductInfo">
+      <img 
+      className="rounded-t-lg pl-5 py-7 h-1/2"  
+      src={props.CardPath} alt="product image" width="200"/>
+    </NavLink>
     <div className="px-5">
-      <a href="#">
-          <h2 className="text-base font-semibold tracking-tight text-softBlack">{props.CardName}</h2>
-          <p className="mt-1 mb-4">{props.CardDescription}</p>
-      </a>
+      <NavLink to="/ProductInfo">
+        <h2 className="text-base font-semibold tracking-tight text-softBlack">{props.CardName}</h2>
+        <p className="mt-1 mb-4">{props.CardDescription}</p>
+      </NavLink>
       
       <div className="flex items-center justify-between">
           <span className="text-lg font-bold  text-softBlack">{props.CardPrice}$</span>
