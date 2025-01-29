@@ -10,7 +10,6 @@ import { useContext, useEffect } from "react"
 import axios from "axios"
 import Settings from "./Routing/Settings.jsx"
 import Cart from "./Routing/Cart.jsx"
-import ProductInfo from "./Routing/ProductInfo.jsx"
 
 function App() {
 
@@ -51,7 +50,6 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/settings" element={<Settings/>}/>
           <Route path="/cart" element={<Cart/>}/>
-          <Route path="/ProductInfo" element={<ProductInfo/>}/>
         </Routes>
     </>
 

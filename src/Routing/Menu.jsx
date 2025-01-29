@@ -5,7 +5,6 @@ import axios from "axios"
 import { ProductContext } from "../Contexts/ProductsContext";
 import { useEffect, useContext, useState } from "react";
 
-
 function Menu() {
   
   const {products, setProducts} = useContext(ProductContext)
@@ -114,6 +113,23 @@ function Menu() {
     console.log("Searching for a product:", searchProduct)
   }
 
+  const addToCart = (productName) => {
+    const postData = {
+      model: productName
+    }
+
+    axios
+    .post("http://localhost/shopiffy/server/endpoints/addtocart.php", postData, {
+      withCredentials: true
+    })
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    console.log(postData.model)
+  }
 
 
 
@@ -121,6 +137,7 @@ function Menu() {
   
   return (
       <section className="w-11/12 h-5/6 mx-auto my-10 bg-slate-200 rounded-md shadow-md shadow-gray-500-500/50">
+        
         <AnimatedPage>
           <div className="flex">
             {/* filter section*/}
@@ -228,8 +245,8 @@ function Menu() {
                   </div>
                 }
                 {!isLoading && !errorStatus && products.map((product, index) => (
-                  <Card CardPath={product.path} CardName={product.name} CardDescription={product.description}
-                  CardPrice={product.price} key={index}/>
+                  <Card CardPath={product.path} CardName={product.model} CardDescription={product.description}
+                  CardPrice={product.price} ButtonText="Add to cart" ButtonFunc={() => {addToCart(product.model)}} key={index}/>
                 ))}
               
             
