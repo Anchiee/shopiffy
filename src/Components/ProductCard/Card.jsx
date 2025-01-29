@@ -15,8 +15,8 @@ function Card(props)
       <div className="flex items-center justify-between">
           <span className="text-lg font-bold  text-softBlack">{props.CardPrice}$</span>
           <button 
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 \
-          font-medium font-Manrope rounded-lg text-sm px-5 py-2.5 text-center transition-all"
+          className="text-white bg-blue-700 hover:bg-blue-800
+          font-medium font-Manrope rounded-lg text-sm px-5 py-2.5 text-center transition-all hover:opacity-80 active:opacity-70"
           onClick={props.ButtonFunc}
           >
             {props.ButtonText}

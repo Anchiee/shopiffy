@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import PopUpContextProvider from './ContextsProviders/PopUpContextProvider.jsx'
 import PopUpOptionContextProvider from './ContextsProviders/PopUpOptionContextProvider.jsx'
 import ProductContextProvider from './ContextsProviders/ProductContextProvider.jsx'
+import CartContextProvider from './ContextsProviders/CartContextProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   
@@ -14,9 +15,11 @@ createRoot(document.getElementById('root')).render(
     <PopUpContextProvider>
     <PopUpOptionContextProvider>
     <ProductContextProvider>
+    <CartContextProvider>
       <BrowserRouter>
         <App/>
       </BrowserRouter>
+    </CartContextProvider>
     </ProductContextProvider>
     </PopUpOptionContextProvider>
     </PopUpContextProvider>

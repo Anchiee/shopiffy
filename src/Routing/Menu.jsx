@@ -4,11 +4,14 @@ import Card from "../Components/ProductCard/Card";
 import axios from "axios"
 import { ProductContext } from "../Contexts/ProductsContext";
 import { useEffect, useContext, useState } from "react";
+import { CartContext } from "../Contexts/CartContext";
 
 function Menu() {
   
   const {products, setProducts} = useContext(ProductContext)
   let [errorStatus, setErrorStatus] = useState(false)
+
+  const {cartProducts, setCartProducts} = useContext(CartContext)
 
   let [isLoading, setIsLoading] = useState(true)
   let [searchProduct, setSearchProduct] = useState({
@@ -123,7 +126,12 @@ function Menu() {
       withCredentials: true
     })
     .then(response => {
-      console.log(response)
+      console.log(response.data.productAdded)
+
+      if(response.data.status == "success"){
+        setCartProducts([...cartProducts, response.data.productAdded])
+        console.log(cartProducts)
+      }
     })
     .catch(error => {
       console.log(error)
