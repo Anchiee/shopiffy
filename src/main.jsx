@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import SessionContextProvider from './ContextsProviders/SessionContextProvider.jsx'
@@ -9,7 +9,7 @@ import ProductContextProvider from './ContextsProviders/ProductContextProvider.j
 import CartContextProvider from './ContextsProviders/CartContextProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
-  
+ 
     <StrictMode>
     <SessionContextProvider>
     <PopUpContextProvider>

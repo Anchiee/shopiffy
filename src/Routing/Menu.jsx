@@ -70,6 +70,7 @@ function Menu() {
 
 
   useEffect(() => {
+    console.log(products)
 
     axios
     .post("http://localhost/shopiffy/server/endpoints/getproductsbyfilter.php", filterOptions, {
@@ -82,7 +83,11 @@ function Menu() {
       console.log("status", response.data)
 
       if(response.data.status == "success") {
+        setErrorStatus(false)
         setProducts(response.data.products)
+      }
+      else {
+        setErrorStatus(response.data.message)
       }
       
     })
@@ -99,11 +104,13 @@ function Menu() {
     axios
     .post("http://localhost/shopiffy/server/endpoints/getproductinfobyname.php", searchProduct)
     .then(response => {
-      console.log(response.data)
+      console.log("response", response.data)
+      
 
       if(response.data.status == "success") {
         setErrorStatus(false)
         setProducts(response.data.products);
+        console.log(products)
       } 
       else {
         setErrorStatus(response.data.message)
@@ -122,11 +129,11 @@ function Menu() {
     }
 
     axios
-    .post("http://localhost/shopiffy/server/endpoints/addtocart.php", postData, {
+    .post("http://localhost/shopiffy/server/endpoints/cart.php", postData, {
       withCredentials: true
     })
     .then(response => {
-      console.log(response.data.productAdded)
+      console.log(response.data)
 
       if(response.data.status == "success"){
         setCartProducts([...cartProducts, response.data.productAdded])
@@ -244,20 +251,31 @@ function Menu() {
             </section>
 
             {/* Products Content */}
-            <section className="py-6 px-5 grid grid-cols-3  gap-4 max-h-150 overflow-auto w-full ">
+            <section className="py-6 px-5 max-h-150 h-150 overflow-auto w-full ">
               
                 {errorStatus && 
-                  <div>
-                    <h1 className="text-5xl font-bold my-3">Error</h1>
-                    <p className="text-2xl">{errorStatus}</p>
+                  <div className="flex justify-center items-center h-full">
+                    <AnimatedPage>
+                      <h1 className="text-5xl font-bold my-3">Oops.. something went wrong</h1>
+                      <p className="text-2xl">{errorStatus}</p>
+                    </AnimatedPage>
                   </div>
                 }
-                {!isLoading && !errorStatus && products.map((product, index) => (
-                  <Card CardPath={product.path} CardName={product.model} CardDescription={product.description}
-                  CardPrice={product.price} ButtonText="Add to cart" ButtonFunc={() => {addToCart(product.model)}} key={index}/>
-                ))}
+                
+                {!isLoading && !errorStatus && (
+                  
+                    <AnimatedPage>
+                      <div className="grid grid-cols-3 gap-4 ">
+                      {products.map((product, index) => (
+                      <Card CardPath={product.path} CardName={product.model} CardDescription={product.description}
+                      CardPrice={product.price} ButtonText="Add to cart" ButtonFunc={() => {addToCart(product.model)}} key={index}/>
+                    ))}
+                      </div>
+                    </AnimatedPage>
+                    
+                 
+                )}
               
-            
             </section>
           </div>
         </AnimatedPage>
