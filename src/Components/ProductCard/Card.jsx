@@ -23,7 +23,7 @@ function Card(props)
           </button>
       </div>
     </div>
-</div>
+  </div>
 
 
   )
@@ -36,6 +36,7 @@ Card.propTypes = {
   CardPrice: PropTypes.number.isRequired,
   ButtonText: PropTypes.string.isRequired,
   ButtonFunc: PropTypes.func.isRequired,
+
 
 }
 

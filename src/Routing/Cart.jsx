@@ -21,6 +21,7 @@ function Cart()
       if(response.data.status == "success") {
         setCartProducts(response.data.products)
         setIsLoading(false)
+        
       }
     })
     .catch(error => {
@@ -38,7 +39,8 @@ function Cart()
     .then(response => {
       console.log(response.data)
       if(response.data.status == "success") {
-        setCartProducts(cartProducts.filter(product => product !== model))
+        setCartProducts(prevCart => prevCart.filter(product => product.model !== response.data.model))
+        console.log("Updated cartProducts:", response.data.products)
       }
     })
     .catch(error => {
@@ -46,7 +48,6 @@ function Cart()
     })
   }
 
-  console.log(cartProducts)
 
 
 
@@ -54,7 +55,12 @@ function Cart()
 
     <section className="w-11/12 h-5/6 mx-auto my-10 bg-slate-200 rounded-md shadow-md shadow-gray-500-500/50">
   
-      {cartProducts.length <= 0 && !isLoading &&
+      {isLoading && 
+        <div className="flex justify-center items-center h-full">
+          <img src={"src/assets/spinner.gif"} alt="loading" width="200"/>
+        </div>
+      }
+      {!cartProducts.length && !isLoading &&
         <div className="flex justify-center items-center h-full">
           <AnimatedPage>
             <div>
@@ -66,11 +72,10 @@ function Cart()
         </div>
       }
 
-      {cartProducts.length > 0 && !isLoading && 
+      {cartProducts.length && !isLoading && 
         <AnimatedPage>
           <div className="py-6 px-10 grid grid-cols-3  gap-6 max-h-150 overflow-auto w-full">
           {cartProducts.map((product, index) => {
-            console.log(product.model)
             return(
             <Card 
             CardName={product.model} CardDescription={product.description} CardPrice={product.price} CardPath={product.path} 

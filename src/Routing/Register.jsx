@@ -99,7 +99,7 @@ function Register()
 
           <IconContainer/>
 
-          <p>Already have an account? <NavLink to="/login" className="underline">Log-in</NavLink></p>
+          <p>Already have an account? <NavLink to="/login" className="hover:underline font-bold">Log-in</NavLink></p>
         </form>
       </section>
     </AnimatedPage>
