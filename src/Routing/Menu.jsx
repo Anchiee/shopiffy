@@ -251,7 +251,7 @@ function Menu() {
             </section>
 
             {/* Products Content */}
-            <section className="py-6 px-5 max-h-150 h-150 overflow-auto w-full ">
+            <section className="py-6 px-5  overflow-auto w-full max-h-[38.2rem]">
               
                 {errorStatus && 
                   <div className="flex justify-center items-center h-full">
@@ -271,7 +271,7 @@ function Menu() {
                 {!isLoading && !errorStatus && (
                   
                     <AnimatedPage>
-                      <div className="grid grid-cols-3 gap-4 ">
+                      <div className="grid grid-cols-3 gap-4">
                       {products.map((product, index) => (
                       <Card CardPath={product.path} CardName={product.model} CardDescription={product.description}
                       CardPrice={product.price} ButtonText="Add to cart" ButtonFunc={() => {addToCart(product.model)}} key={index}/>

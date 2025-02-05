@@ -17,6 +17,8 @@ function App() {
   const path = useLocation()
   const navigate = useNavigate()
 
+  const TIMEOUTDELAY = 3000
+
   useEffect( () => {  
 
     axios
@@ -28,7 +30,7 @@ function App() {
       if(response.data.status == "success") {
         setSession({username: response.data.username, email: response.data.email})
       }
-      else if(response.data.status == "error" && (path.pathname == "/settings" || path.pathname == "/menu" || path.pathname == "/cart")) {
+      else if(response.data.status == "error" && ["/cart", "/settings", "/menu"].includes(path.pathname)) {
         navigate("/login")
       }
     })
@@ -37,6 +39,27 @@ function App() {
     })
 
   }, [])
+
+  setTimeout(() => {
+    axios
+    .get("http://localhost/shopiffy/server/endpoints/getuserinfo.php", {
+      withCredentials: true
+    })
+    .then(response => {
+      console.log(response.data)
+      if(response.data.status !== "success") {
+        setSession({username: response.data.username, email: response.data.email})
+
+        if(["/settings", "/cart", "/menu"].includes(path.pathname)) {
+          navigate("/login")
+        }
+      }
+      
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }, TIMEOUTDELAY)
 
 
   return(

@@ -53,13 +53,11 @@ function Cart()
     <section className="w-11/12 h-5/6 mx-auto my-10 bg-slate-200 rounded-md shadow-md shadow-gray-500-500/50">
   
       {!cartProducts.length && !isLoading &&
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-5/6">
           <AnimatedPage>
-            <div>
               <img src={"src/assets/emptycart.png"} alt="empty cart" width="200"/>
               <h1 className="font-bold text-2xl my-3">Oops... no products found.</h1>
               <p>Add some products in the menu page!</p>
-            </div>
           </AnimatedPage>
         </div>
       }
