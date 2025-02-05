@@ -261,6 +261,12 @@ function Menu() {
                     </AnimatedPage>
                   </div>
                 }
+
+                {isLoading &&
+                  <div className="flex justify-center items-center h-full">
+                    <img src="/src/assets/spinner.gif" width="150" alt="loading"/>
+                  </div>
+                }
                 
                 {!isLoading && !errorStatus && (
                   

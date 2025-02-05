@@ -88,7 +88,7 @@ function Login()
           <IconContainer/>
 
           <p className="text-center">New to shopiffy?
-            <NavLink to="/register" className="px-2 underline">Sign-up </NavLink>
+            <NavLink to="/register" className="px-2 font-bold hover:underline">Sign-up </NavLink>
           </p>
 
         </form>

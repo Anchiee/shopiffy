@@ -16,7 +16,7 @@ function Card(props)
           <span className="text-lg font-bold  text-softBlack">{props.CardPrice}$</span>
           <button 
           className="text-white bg-blue-700 hover:bg-blue-800
-          font-medium font-Manrope rounded-lg text-sm px-5 py-2.5 text-center transition-all hover:opacity-80 active:opacity-70"
+          font-medium font-Manrope rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer transition-all hover:opacity-80 active:opacity-70"
           onClick={props.ButtonFunc}
           >
             {props.ButtonText}

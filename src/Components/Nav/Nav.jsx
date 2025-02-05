@@ -16,10 +16,10 @@ function Navigation()
 
     <>
       <AnimatedPage>
-        <nav className="flex items-center justify-between pl-38 pt-7 py-6 bg-softBlack text-slate-400 
-        outline outline-1 outline-gray-700">
+        <nav className="flex items-center justify-between pl-38 pt-7 py-6 text-slate-400 
+         outline-1 outline-gray-700">
 
-          <div>
+          <div className="pl-36">
             <NavLink to="/" className="text-base font-bold mr-5 tracking-wider">SHOPIFFY</NavLink>
 
             <NavLink to="/contact" 
@@ -36,7 +36,7 @@ function Navigation()
           <div className="pr-28">
             {!userSession.username && 
             <NavLink to="/login" 
-            className="no-underline text-base px-6 py-1 mx-5 outline outline-2 outline-slate-400 rounded-2xl hover:bg-slate-400 
+            className="no-underline text-base px-6 py-1 mx-5 outline-2 outline-slate-400 rounded-2xl hover:bg-slate-400 
             hover:text-softBlack transition-all">
               Sign-in
             </NavLink>
@@ -46,7 +46,7 @@ function Navigation()
             
             {userSession.username && 
             <NavLink to="/cart" 
-            className="px-6 py-1 mx-5 outline outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
+            className="px-6 py-1 mx-5 outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
             hover:text-slate-300 transition-all">
               <FontAwesomeIcon icon={faShoppingCart}/>
               <p className="inline text-base font-bold ml-1">Cart</p>
@@ -54,7 +54,7 @@ function Navigation()
 
             {userSession.username && 
             <NavLink to="/settings" 
-            className="px-6 py-1 mx-10 outline outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
+            className="px-6 py-1 mx-10 outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
             hover:text-slate-300 transition-all">
               <FontAwesomeIcon icon={faGear}/>
               <p className="inline text-base font-bold ml-1">Settings</p>

@@ -1,6 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+
+
+@theme {
+  --color-transparent-100: rgba(0, 0, 0, 0);
+  --color-transparent-200: rgba(0, 0, 0, .2);
+  --color-transparent-300: rgba(0, 0, 0, .3);
+  --color-transparent-400: rgba(0, 0, 0, .4);
+   
+  --color-softBlack: #1e293b;
+  --color-softGray: #826f6f;
+  --color-softBrown-100: #D0B8A8;
+  --color-softBrown-200: #aa9c8e;
+  --color-softBrown-300: #756a60;
+
+  --font-Manrope: "Manrope", serif;
+
+  --spacing-6_9: "1.48rem";
+  --spacing-8_5: "2.1rem";
+  --spacing-13: "3.4rem";
+  --spacing-18: "4.5rem";
+  --spacing-18_5: "4.6rem";
+  --spacing-19: "4.8rem";
+  --spacing-38: "9.5rem"; 
+  --spacing-150: "37.5rem";
+
+}
 
 /* width */
 ::-webkit-scrollbar {
