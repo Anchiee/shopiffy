@@ -11,20 +11,23 @@ function Home()
         <section id="about">
 
         <div className="w-4/5 my-0 mx-auto text-slate-400">
-          <div className="flex items-center my-40">
+          <div className="flex flex-col xl:flex-row gap-12 items-center mt-32 xl:my-40">
                 <section className="text-left inline">
-                  <h2 className="text-4xl tracking-widest w-3/4 mb-8">Shop whenever you want, wherever you want</h2>
+                  <h2 
+                  className="font-bold my-5 text-base xl:text-3xl xl:tracking-wider xl:w-3/4 xl:mb-8 xl:font-light">
+                    Shop whenever you want, wherever you want</h2>
                   <ThinButton ButtonType="button" ButtonClick={() => document.getElementById("about").scrollIntoView({behavior: "smooth"})} ButtonText="Learn more"/>
                 </section>
 
-                <section className="text-right inline">
-                  <h2 className="text-4xl m-0">Join to over thousands of people satisfied</h2>
-                  <p className="tracking-widest text-lg block my-6">What are you waiting for? Sign now!</p>
+                <section className="text-left xl:text-right inline">
+                  <h2 className="hidden text-base font-bold xl:font-light xl:text-3xl xl:m-0 xl:tracking-wider xl:inline">
+                    Join to over thousands of people satisfied</h2>
+                  <p className="hidden tracking-widest text-base xl:text-lg xl:my-8 xl:block">What are you waiting for? Sign now!</p>
                 </section>
           </div>  
 
-              <section className="my-40 mx-auto">
-                <h3 className="text-center text-2xl pb-4 border-b-2 border-gray-700">About us</h3>
+              <section className="xl:my-40 mx-auto">
+                <h3 className="hidden xl:text-center xl:text-2xl xl:pb-4 xl:border-b-2 xl:border-gray-700">About us</h3>
 
                 {[
                   { 
@@ -46,8 +49,8 @@ function Home()
                 ].map((faq, index) => (
                   
                   <div key={index}>
-                  <h4 className="font-bold mt-10 text-xl">{faq.question}</h4>
-                  <p className="my-5 text-lg">
+                  <h4 className="font-bold mt-10 text-xs xl:text-lg">{faq.question}</h4>
+                  <p className="my-5 text-xs xl:text-base">
                     {faq.answer}
                   </p>
                 </div>

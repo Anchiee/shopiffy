@@ -15,12 +15,13 @@ function Navigation()
   return(
 
     <>
-      <AnimatedPage>
-        <nav className="flex items-center justify-between pl-38 pt-7 py-6 text-slate-400 
-         outline-1 outline-gray-700">
 
-          <div className="pl-36">
-            <NavLink to="/" className="text-base font-bold mr-5 tracking-wider">SHOPIFFY</NavLink>
+      <AnimatedPage>
+        <nav className="flex items-center gap-4 py-6 text-slate-400 
+         outline-1 outline-gray-700 xl:px-[9rem] justify-evenly xl:justify-start
+         ">
+
+            <NavLink to="/" className="text-base font-bold mr-5 tracking-wider hidden xl:inline">SHOPIFFY</NavLink>
 
             <NavLink to="/contact" 
             className="no-underline text-base transition-opacity mx-5 hover:opacity-70">Contact</NavLink>
@@ -29,14 +30,11 @@ function Navigation()
             <NavLink to="/menu" 
             className="no-underline text-base transition-opacity mx-5 hover:opacity-70">Menu</NavLink>
             }
-          </div>
           
 
-
-          <div className="pr-28">
             {!userSession.username && 
             <NavLink to="/login" 
-            className="no-underline text-base px-6 py-1 mx-5 outline-2 outline-slate-400 rounded-2xl hover:bg-slate-400 
+            className="no-underline text-base px-6 py-1 mx-5 outline-1 outline-gray-700 xl:outline-2 xl:outline-slate-400 rounded-2xl hover:bg-slate-400 
             hover:text-softBlack transition-all">
               Sign-in
             </NavLink>
@@ -46,7 +44,7 @@ function Navigation()
             
             {userSession.username && 
             <NavLink to="/cart" 
-            className="px-6 py-1 mx-5 outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
+            className=" xl:mx-6 outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
             hover:text-slate-300 transition-all">
               <FontAwesomeIcon icon={faShoppingCart}/>
               <p className="inline text-base font-bold ml-1">Cart</p>
@@ -54,12 +52,11 @@ function Navigation()
 
             {userSession.username && 
             <NavLink to="/settings" 
-            className="px-6 py-1 mx-10 outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
+            className=" outline-2 outline-softBlack rounded-2xl hover:bg-softBlack 
             hover:text-slate-300 transition-all">
               <FontAwesomeIcon icon={faGear}/>
               <p className="inline text-base font-bold ml-1">Settings</p>
             </NavLink>}
-          </div>
 
         </nav>  
       </AnimatedPage>

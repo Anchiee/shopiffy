@@ -8,8 +8,8 @@ function Footer()
   fontawesome.library.add(faDiscord, faEnvelope)
 
   return(
-    <footer className="flex flex-row items-center justify-evenly h-full py-6 bg-softBlack 
-    border-t-2 border-gray-700 shadow-slate-200  text-slate-400">
+    <footer className="flex flex-row  text-[.5rem] xl:text-base items-center justify-evenly h-full py-6 bg-softBlack outline-1 outline-gray-700
+    xl:border-t-2 xl:border-gray-700 shadow-slate-200  text-slate-400">
       <div>
         <h3>Shopiffy {new Date().getFullYear()}. The project is under the MIT license</h3>
         <p>This project is open source. 

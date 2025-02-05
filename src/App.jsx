@@ -17,7 +17,7 @@ function App() {
   const path = useLocation()
   const navigate = useNavigate()
 
-  const TIMEOUTDELAY = 3000
+  const TIMEOUTDELAY = 50000
 
   useEffect( () => {  
 
@@ -54,7 +54,7 @@ function App() {
           navigate("/login")
         }
       }
-      
+
     })
     .catch(error => {
       console.log(error)
