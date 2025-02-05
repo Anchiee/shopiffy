@@ -5,8 +5,8 @@ function SolidButton(props)
 {
   return <button 
     type={props.ButtonType} 
-    className="block mx-auto my-3 font-Manrope cursor-pointer text-xl bg-orange-300
-    py-4 w-full rounded-md transition-opacity box-border font-bold hover:opacity-70" 
+    className="block mx-auto my-3 font-Manrope cursor-pointer text-base xl:text-xl bg-orange-300
+    py-4 w-full rounded-md transition-opacity box-border font-bold xl:hover:opacity-70" 
     onClick={props.ButtonClick}>
     {props.ButtonText}
     </button>

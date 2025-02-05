@@ -25,10 +25,11 @@ function Login()
 
 
   const handleSubmit = (e) => {
+    console.log(e.target.style)
     e.preventDefault()
 
     axios
-    .post("http://localhost/shopiffy/server/endpoints/login.php", user, {
+    .post("http://192.168.0.18/shopiffy/server/endpoints/login.php", user, {
       withCredentials: true,
       headers: {
         "Content-Type":"application/json"
@@ -61,9 +62,9 @@ function Login()
     <AnimatedPage>
       <section className="flex justify-center items-center">
         <form onSubmit={handleSubmit} method="post" 
-        className="inline bg-slate-200 text-xl rounded-md py-10 px-24 mt-20 w-1/3 shadow-gray-300-500/50 shadow-lg">
+        className="inline bg-slate-200 text-xl rounded-md py-10 px-8 xl:px-24 mt-20 shadow-gray-300-500/50 shadow-lg">
       
-          <label htmlFor="username-input" className="font-bold">Username</label>
+          <label htmlFor="username-input" className="font-bold text-base xl:text-xl">Username</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your username" 
@@ -73,7 +74,7 @@ function Login()
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
 
-          <label htmlFor="password-input" className="font-bold">Password</label>
+          <label htmlFor="password-input" className="font-bold text-base xl:text-xl">Password</label>
           <Input 
           InputType="password" 
           InputPlaceholder="Enter your password"  
@@ -83,11 +84,11 @@ function Login()
 
           <p className={errorStatus ? "mb-8 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
 
-          <SolidButton ButtonType="submit" ButtonText="Log-in"/>
+          <SolidButton ButtonType="submit"  ButtonText="Log-in"/>
 
           <IconContainer/>
 
-          <p className="text-center">New to shopiffy?
+          <p className="text-center text-base xl:text-xl">New to shopiffy?
             <NavLink to="/register" className="px-2 font-bold hover:underline">Sign-up </NavLink>
           </p>
 

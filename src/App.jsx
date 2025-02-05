@@ -22,7 +22,7 @@ function App() {
   useEffect( () => {  
 
     axios
-    .get("http://localhost/shopiffy/server/endpoints/getuserinfo.php", {
+    .get("http://192.168.0.18/shopiffy/server/endpoints/getuserinfo.php", {
       withCredentials: true
     })
     .then(response => {
@@ -41,24 +41,25 @@ function App() {
   }, [])
 
   setTimeout(() => {
-    axios
-    .get("http://localhost/shopiffy/server/endpoints/getuserinfo.php", {
-      withCredentials: true
-    })
-    .then(response => {
-      console.log(response.data)
-      if(response.data.status !== "success") {
-        setSession({username: response.data.username, email: response.data.email})
 
-        if(["/settings", "/cart", "/menu"].includes(path.pathname)) {
+    if(["/settings", "/cart", "/menu"].includes(path.pathname)) {
+      
+      axios
+      .get("http://192.168.0.18/shopiffy/server/endpoints/getuserinfo.php", {
+        withCredentials: true
+      })
+      .then(response => {
+        console.log(response.data)
+        if(response.data.status !== "success") {
+          setSession({username: null, email: null})
           navigate("/login")
         }
-      }
 
-    })
-    .catch(error => {
-      console.log(error)
-    })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
   }, TIMEOUTDELAY)
 
 

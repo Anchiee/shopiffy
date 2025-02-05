@@ -25,7 +25,7 @@ function Settings()
     e.preventDefault()
 
     axios
-    .delete("http://localhost/shopiffy/server/endpoints/logout.php", {
+    .delete("http://192.168.0.18/shopiffy/server/endpoints/logout.php", {
       withCredentials: true
     })
     .then(response => {
@@ -43,7 +43,7 @@ function Settings()
     e.preventDefault()
 
     axios
-    .delete("http://localhost/shopiffy/server/endpoints/deleteaccount.php", {
+    .delete("http://192.168.0.18/shopiffy/server/endpoints/deleteaccount.php", {
       withCredentials: true
     })
     .then(response => {

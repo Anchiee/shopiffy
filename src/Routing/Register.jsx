@@ -29,7 +29,7 @@ function Register()
   const handleSubmit = (e) => {
     e.preventDefault()
     axios
-    .post("http://localhost/shopiffy/server/endpoints/register.php", user, {
+    .post("http://192.168.0.18/shopiffy/server/endpoints/register.php", user, {
       withCredentials: true,
       headers: {
         "Content-Type":"application/json"
@@ -64,9 +64,9 @@ function Register()
     <AnimatedPage>
       <section className="flex justify-center items-center">
         <form onSubmit={handleSubmit} method="post" 
-        className="inline bg-slate-200 text-xl rounded-md py-8 px-24 mt-10 w-1/3 shadow-gray-300-500/50 shadow-lg">
+        className="inline bg-slate-200 text-xl rounded-md py-5 xl:py-8 px-8 xl:px-24 mt-5 xl:mt-10 shadow-gray-300-500/50 shadow-lg">
 
-          <label htmlFor="username-input">Username</label>
+          <label htmlFor="username-input" className="font-bold text-base xl:text-xl">Username</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your username" 
@@ -75,7 +75,7 @@ function Register()
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
           
-          <label htmlFor="password-input">Password</label>
+          <label htmlFor="password-input" className="font-bold text-base xl:text-xl">Password</label>
           <Input 
           InputType="password" 
           InputPlaceholder="Enter your password" 
@@ -85,7 +85,7 @@ function Register()
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
 
-          <label htmlFor="email-input">Email</label>
+          <label htmlFor="email-input" className="font-bold text-base xl:text-xl">Email</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your email" 
@@ -99,7 +99,10 @@ function Register()
 
           <IconContainer/>
 
-          <p>Already have an account? <NavLink to="/login" className="font-bold hover:underline">Log-in</NavLink></p>
+          <p className="text-center text-base xl:text-xl">
+            Already have an account? 
+            <NavLink to="/login" className="font-bold hover:underline"> Log-in</NavLink>
+          </p>
         </form>
       </section>
     </AnimatedPage>
