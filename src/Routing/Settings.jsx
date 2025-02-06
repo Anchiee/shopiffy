@@ -25,7 +25,7 @@ function Settings()
     e.preventDefault()
 
     axios
-    .delete("http://192.168.0.18/shopiffy/server/endpoints/logout.php", {
+    .delete("http://192.168.0.13/shopiffy/server/endpoints/logout.php", {
       withCredentials: true
     })
     .then(response => {
@@ -40,10 +40,11 @@ function Settings()
   }
 
   const handleDeleteAccount = (e) => {
+    
     e.preventDefault()
 
     axios
-    .delete("http://192.168.0.18/shopiffy/server/endpoints/deleteaccount.php", {
+    .delete("http://192.168.0.13/shopiffy/server/endpoints/deleteaccount.php", {
       withCredentials: true
     })
     .then(response => {
@@ -119,8 +120,8 @@ function Settings()
             </form>
 
             <form onSubmit={handleDeleteAccount} method="delete">
-            <button type="submit" className="font-Manrope cursor-pointer text-base bg-red-500
-    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70" onClick={() => showPopup("EMAIL", "email", "Enter your email", "email")}>
+              <button type="submit" className="font-Manrope cursor-pointer text-base bg-red-500
+    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70">
                 Delete account
               </button>
               <p className="text-xs font-bold mt-2">WARNING! this option is permament</p>

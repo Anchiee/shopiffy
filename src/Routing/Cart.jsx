@@ -13,7 +13,7 @@ function Cart()
 
   useEffect(() => {
     axios
-    .get("http://192.168.0.18/shopiffy/server/endpoints/cart.php", {
+    .get("http://192.168.0.13/shopiffy/server/endpoints/cart.php", {
       withCredentials: true,
     })
     .then(response => {
@@ -31,7 +31,7 @@ function Cart()
 
   const removeFromCart = (model) => {
     axios
-    .delete("http://192.168.0.18/shopiffy/server/endpoints/cart.php", {
+    .delete("http://192.168.0.13/shopiffy/server/endpoints/cart.php", {
       data: {model: model},
       withCredentials: true
     })

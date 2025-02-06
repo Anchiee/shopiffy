@@ -50,7 +50,7 @@ function Menu() {
   useEffect(() => {
     if(!products || products.length == 0) {
       axios
-      .get("http://localhost/shopiffy/server/endpoints/getproducts.php")
+      .get("http://192.168.0.13/shopiffy/server/endpoints/getproducts.php")
       .then(response => {
         console.log("Server response", response.data.products)
         setProducts(response.data.products)

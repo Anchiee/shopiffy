@@ -29,7 +29,7 @@ function Register()
   const handleSubmit = (e) => {
     e.preventDefault()
     axios
-    .post("http://192.168.0.18/shopiffy/server/endpoints/register.php", user, {
+    .post("http://192.168.0.13/shopiffy/server/endpoints/register.php", user, {
       withCredentials: true,
       headers: {
         "Content-Type":"application/json"

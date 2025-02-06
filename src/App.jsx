@@ -22,7 +22,7 @@ function App() {
   useEffect( () => {  
 
     axios
-    .get("http://192.168.0.18/shopiffy/server/endpoints/getuserinfo.php", {
+    .get("http://192.168.0.13/shopiffy/server/endpoints/getuserinfo.php", {
       withCredentials: true
     })
     .then(response => {
@@ -45,7 +45,7 @@ function App() {
     if(["/settings", "/cart", "/menu"].includes(path.pathname)) {
       
       axios
-      .get("http://192.168.0.18/shopiffy/server/endpoints/getuserinfo.php", {
+      .get("http://192.168.0.13/shopiffy/server/endpoints/getuserinfo.php", {
         withCredentials: true
       })
       .then(response => {

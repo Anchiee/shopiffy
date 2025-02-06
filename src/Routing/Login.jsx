@@ -25,11 +25,10 @@ function Login()
 
 
   const handleSubmit = (e) => {
-    console.log(e.target.style)
     e.preventDefault()
 
     axios
-    .post("http://192.168.0.18/shopiffy/server/endpoints/login.php", user, {
+    .post("http://192.168.0.13/shopiffy/server/endpoints/login.php", user, {
       withCredentials: true,
       headers: {
         "Content-Type":"application/json"
@@ -56,7 +55,7 @@ function Login()
     })
 
   }
-  
+   
 
   return (
     <AnimatedPage>
