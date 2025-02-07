@@ -21,7 +21,6 @@ function Login()
   
   let [errorMessage, setErrorMessage] = useState("empty message")
   let [errorStatus, setErrorStatus] = useState(false)
-  let [inputErrorClass, setInputErrorClass] = useState(null)
 
 
   const handleSubmit = (e) => {
@@ -38,7 +37,6 @@ function Login()
       console.log(response.data)
       
       if(response.data.status === "error") {
-        setInputErrorClass("input-error")
         setErrorMessage(response.data.message)
         setErrorStatus(true)
       }
@@ -61,33 +59,33 @@ function Login()
     <AnimatedPage>
       <section className="flex justify-center items-center">
         <form onSubmit={handleSubmit} method="post" 
-        className="inline bg-slate-200 text-xl rounded-md py-10 px-8 xl:px-24 mt-20 shadow-gray-300-500/50 shadow-lg">
+        className="inline bg-slate-200 text-xl rounded-md py-10 px-8 md:px-24 mt-20 shadow-gray-300-500/50 shadow-lg">
       
-          <label htmlFor="username-input" className="font-bold text-base xl:text-xl">Username</label>
+          <label htmlFor="username-input" className="font-bold text-base md:text-xl">Username</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your username" 
           InputOnChange={(e) => setUser(u => ({...u, username: e.target.value}))} 
-          InputClass={inputErrorClass} 
+          InputErrorStatus={errorStatus} 
           InputId="username-input"/>
           
-          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
 
-          <label htmlFor="password-input" className="font-bold text-base xl:text-xl">Password</label>
+          <label htmlFor="password-input" className="font-bold text-base md:text-xl">Password</label>
           <Input 
           InputType="password" 
           InputPlaceholder="Enter your password"  
           InputOnChange={(e) => setUser(u => ({...u, password: e.target.value}))} 
-          InputClass={inputErrorClass} 
+          InputErrorStatus={errorStatus} 
           InputId="password-input"/>
 
-          <p className={errorStatus ? "mb-8 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-8 text-red-400 visible text-xs md:text-lg" : "invisible"}>{errorMessage}</p>
 
           <SolidButton ButtonType="submit"  ButtonText="Log-in"/>
 
           <IconContainer/>
 
-          <p className="text-center text-base xl:text-xl">New to shopiffy?
+          <p className="text-center text-base md:text-xl">New to shopiffy?
             <NavLink to="/register" className="px-2 font-bold hover:underline">Sign-up </NavLink>
           </p>
 

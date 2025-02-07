@@ -11,7 +11,7 @@ function Contact()
     <>
       <AnimatedPage>
         <section className="h-full flex justify-center items-center flex-row my-8">
-          <div className="inline bg-slate-200 text-base rounded-md py-8 px-10 mt-2 w-1/3 shadow-gray-300-500/50 shadow-lg">
+          <div className="inline bg-slate-200 text-base rounded-md py-8 px-10 mt-2 md:w-1/3 shadow-gray-300-500/50 shadow-lg">
             <label htmlFor="input-title" className="mt-6 block">Title</label>
             <Input 
             InputType="text" 

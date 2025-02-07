@@ -10,6 +10,7 @@ import { useContext, useEffect } from "react"
 import axios from "axios"
 import Settings from "./Routing/Settings.jsx"
 import Cart from "./Routing/Cart.jsx"
+import { AnimatePresence } from "motion/react"
 
 function App() {
 
@@ -66,16 +67,18 @@ function App() {
   return(
 
     <>  
-        {path.pathname != "/register" && path.pathname != "/login" && <Navigation/>}          
-        <Routes>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-          <Route path="/menu" element={<Menu/>}/>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/settings" element={<Settings/>}/>
-          <Route path="/cart" element={<Cart/>}/>
-        </Routes>
+        {path.pathname != "/register" && path.pathname != "/login" && <Navigation/>}       
+        <AnimatePresence mode="wait">  
+          <Routes key={path.pathname} location={path}>
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+            <Route path="/menu" element={<Menu/>}/>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/settings" element={<Settings/>}/>
+            <Route path="/cart" element={<Cart/>}/>
+          </Routes>
+        </AnimatePresence>
     </>
 
   )

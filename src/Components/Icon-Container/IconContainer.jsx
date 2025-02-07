@@ -10,12 +10,12 @@ function IconContainer()
           <a href="https://discord.com/oauth2/authorize?client_id=1329212800610074766&response_type=code&redirect_uri=http%3A%2F%2F192.168.0.13%2Fshopiffy%2Fserver%2Fcallbacks%2Fdiscord.php&scope=email+identify"
           className="flex items-center border-gray-300 border-2 px-5 py-3 rounded-2xl">
             <FontAwesomeIcon icon={faDiscord} className="text-xs"/>
-            <span className="ml-2 font-bold text-xs xl:text-lg">Discord</span>
+            <span className="ml-2 font-bold text-xs md:text-lg">Discord</span>
           </a>
           <a href="https://github.com/login/oauth/authorize?client_id=Iv23lilBfiDMZpuPtzbu&scope=user"
           className="flex items-center border-gray-300 border-2 pl-4 pr-6 py-3 rounded-2xl">
             <FontAwesomeIcon icon={faGithub} className="text-xs"/>
-            <span className="ml-2 font-bold text-xs xl:text-lg">Github</span>
+            <span className="ml-2 font-bold text-xs md:text-lg">Github</span>
           </a>          
     </div>
   )

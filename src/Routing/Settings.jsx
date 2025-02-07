@@ -16,9 +16,9 @@ function Settings()
   const {setPopUpOption} = useContext(PopUpOptionContext)
   const navigate = useNavigate()
 
-  const showPopup = (PopUpLabelText, PopUphtmlFor, PopUpPlaceholder, PopUpId) => {
+  const showPopup = (PopUpLabelText, PopUphtmlFor, PopUpPlaceholder) => {
     setPopUpStatus(true)
-    setPopUpOption({labelText: PopUpLabelText, htmlFor: PopUphtmlFor, placeholder: PopUpPlaceholder, id: PopUpId})
+    setPopUpOption({labelText: PopUpLabelText, htmlFor: PopUphtmlFor, placeholder: PopUpPlaceholder, id: PopUphtmlFor})
   }
 
   const handleLogOut = (e) => {
@@ -63,68 +63,51 @@ function Settings()
 
   return(
     <AnimatedPage>
-      <section className="flex justify-center items-center h-5/6 mt-10 mb-">
-        <div className="inline bg-slate-200 text-base rounded-md py-8 px-10 mt-2 w-1/3 shadow-gray-300-500/50 shadow-lg">
+      <section className="flex justify-center items-center mt-12">
+        <div className="inline bg-slate-200 text-base rounded-md py-6 px-8 md:py-8 md:px-10  shadow-gray-300-500/50 shadow-xl 
+        md:shadow-lg">
+          
           <img src={"src/assets/defaultProfile.jpg"} alt="profile picture" width="120" className="rounded-md"/>
           
-          <div className="flex flex-row items-center justify-between my-10">
-            <div>
-              <h2 className="font-bold">USERNAME</h2>
-              <p>{userSession.username}</p>
-            </div>
+          {[
+            {header: "USERNAME", data: userSession.username},
+            {header: "PASSWORD", data: "*******"},
+            {header: "EMAIL", data: userSession.email}
+          ].map((data, index) => (
+            <div className="flex flex-row items-center justify-between  my-5 md:my-10" key={index}>
+              <div>
+                <h2 className="text-[.75rem] md:text-base font-bold">{data.header}</h2>
+                <p className="text-[.65rem] md:text-base">{data.data}</p>
+              </div>
             
-            <div className="w-1/5 inline">
-            <button className="font-Manrope cursor-pointer text-base bg-orange-300
-    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70" onClick={() => showPopup("USERNAME", "username", "Enter your username", "username")}>
+              <div className="w-1/5 inline">
+                <button className="font-Manrope cursor-pointer text-xs md:text-base bg-orange-300
+                py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70" 
+                onClick={() => showPopup(data.header == "PASSWORD" ? "NEW PASSWORD" : data.header, data.header.toLowerCase(), `Enter your ${data.header.toLowerCase()}`)}>
                 Edit
-              </button>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-row items-center justify-between my-10">
-            <div>
-              <h2 className="font-bold">PASSWORD</h2>
-              <p>*******</p>
-            </div>
-            
-            <div className="w-1/5 inline">
-            <button className="font-Manrope cursor-pointer text-base bg-orange-300
-    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70" onClick={() => showPopup("NEW PASSWORD", "password", "Enter your password", "password")}>
-                Edit
-              </button>
-            </div>
-            
-          </div>
+          ))}
 
-          <div className="flex flex-row items-center justify-between my-10">
-            <div>
-              <h2 className="font-bold">EMAIL</h2>
-              <p>{userSession.email}</p>
-            </div>
-            
-            <div className="w-1/5 inline">
-              <button className="font-Manrope cursor-pointer text-base bg-orange-300
-    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70" onClick={() => showPopup("EMAIL", "email", "Enter your email", "email")}>
-                Edit
-              </button>
-            </div>
-          </div>
+          
 
-          <div className="flex flex-row justify-around">
+          <div className="flex flex-row justify-around gap-8">
             
             <form onSubmit={handleLogOut} method="delete">
-            <button type="submit" className="font-Manrope cursor-pointer text-base bg-orange-300
-    py-3 px-10 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70">
+            <button type="submit" className="font-Manrope cursor-pointer text-xs md:text-base bg-orange-300
+    py-3 px-7 md:px-10 font-bold w-full rounded-md transition-opacity  hover:opacity-70">
                 Log out
               </button>
             </form>
 
             <form onSubmit={handleDeleteAccount} method="delete">
-              <button type="submit" className="font-Manrope cursor-pointer text-base bg-red-500
-    py-3 w-full font-bold rounded-md transition-opacity box-border hover:opacity-70">
+              <button type="submit" className="font-Manrope cursor-pointer text-xs md:text-base bg-red-500
+    py-3 w-full font-bold rounded-md transition-opacity  hover:opacity-70">
                 Delete account
               </button>
-              <p className="text-xs font-bold mt-2">WARNING! this option is permament</p>
+              <p className="text-[.5rem] md:text-xs font-bold mt-2">WARNING! this option is permament</p>
             </form>
           </div>
         </div>

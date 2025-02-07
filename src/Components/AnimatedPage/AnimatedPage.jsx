@@ -11,7 +11,7 @@ function AnimatedPage({children})
 {
   return(
 
-    <motion.section variants={animations} initial="initial" animate="animate" exit="exit">
+    <motion.section variants={animations} initial="initial" animate="animate" exit="exit" transition={{duration: 0.25}}>
       {children}
     </motion.section>
 

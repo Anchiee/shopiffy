@@ -73,7 +73,7 @@ function Menu() {
     console.log(products)
 
     axios
-    .post("http://localhost/shopiffy/server/endpoints/getproductsbyfilter.php", filterOptions, {
+    .post("http://192.168.0.13/shopiffy/server/endpoints/getproductsbyfilter.php", filterOptions, {
       headers: {
         "Content-Type": "application/json",
       }
@@ -102,7 +102,7 @@ function Menu() {
   const handleSearchProduct = (e) => {
     e.preventDefault()
     axios
-    .post("http://localhost/shopiffy/server/endpoints/getproductinfobyname.php", searchProduct)
+    .post("http://192.168.0.13/shopiffy/server/endpoints/getproductinfobyname.php", searchProduct)
     .then(response => {
       console.log("response", response.data)
       
@@ -129,7 +129,7 @@ function Menu() {
     }
 
     axios
-    .post("http://localhost/shopiffy/server/endpoints/cart.php", postData, {
+    .post("http://192.168.0.13/shopiffy/server/endpoints/cart.php", postData, {
       withCredentials: true
     })
     .then(response => {

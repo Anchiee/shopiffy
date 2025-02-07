@@ -23,7 +23,6 @@ function Register()
   
   let [errorMessage, setErrorMessage] = useState("empty message")
   let [errorStatus, setErrorStatus] = useState(false)
-  let [inputErrorClass, setInputErrorClass] = useState(null)
 
 
   const handleSubmit = (e) => {
@@ -39,7 +38,6 @@ function Register()
       console.log(response.data)
       
       if(response.data.status === "error") {
-        setInputErrorClass("input-error")
         setErrorMessage(response.data.message)
         setErrorStatus(true)
       }
@@ -64,42 +62,42 @@ function Register()
     <AnimatedPage>
       <section className="flex justify-center items-center">
         <form onSubmit={handleSubmit} method="post" 
-        className="inline bg-slate-200 text-xl rounded-md py-5 xl:py-8 px-8 xl:px-24 mt-5 xl:mt-10 shadow-gray-300-500/50 shadow-lg">
+        className="inline bg-slate-200 text-xl rounded-md py-5 md:py-8 px-8 md:px-24 mt-5 md:mt-10 shadow-gray-300-500/50 shadow-lg">
 
-          <label htmlFor="username-input" className="font-bold text-base xl:text-xl">Username</label>
+          <label htmlFor="username-input" className="font-bold text-base md:text-xl">Username</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your username" 
           InputOnChange={(e) => setUser(u => ({...u, username: e.target.value}))} 
-          InputClass={inputErrorClass} InputId="username-input"/>
+          InputErrorStatus={errorStatus} InputId="username-input"/>
           
-          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
           
-          <label htmlFor="password-input" className="font-bold text-base xl:text-xl">Password</label>
+          <label htmlFor="password-input" className="font-bold text-base md:text-xl">Password</label>
           <Input 
           InputType="password" 
           InputPlaceholder="Enter your password" 
           InputOnChange={(e) => setUser(u => ({...u, password: e.target.value}))} 
-          InputClass={inputErrorClass} 
+          InputErrorStatus={errorStatus} 
           InputId="password-input"/>
           
-          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
 
-          <label htmlFor="email-input" className="font-bold text-base xl:text-xl">Email</label>
+          <label htmlFor="email-input" className="font-bold text-base md::text-xl">Email</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your email" 
           InputOnChange={(e) => setUser(u => ({...u, email: e.target.value}))} 
-          InputClass={inputErrorClass} 
+          InputErrorStatus={errorStatus} 
           InputId="email-input"/>
           
-          <p className={errorStatus ? "mb-5 text-red-400 visible text-lg" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
 
           <SolidButton ButtonType="submit" ButtonText="Sign-in"/>
 
           <IconContainer/>
 
-          <p className="text-center text-base xl:text-xl">
+          <p className="text-center text-base md:text-xl">
             Already have an account? 
             <NavLink to="/login" className="font-bold hover:underline"> Log-in</NavLink>
           </p>

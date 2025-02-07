@@ -68,7 +68,7 @@ function Cart()
         </div>
       }
 
-      {cartProducts.length && !isLoading && 
+      {cartProducts.length > 0 && !isLoading && 
         <AnimatedPage>
           <div className="py-6 px-10 grid grid-cols-3  gap-6 max-h-150 overflow-auto w-full">
           {cartProducts.map((product, index) => {

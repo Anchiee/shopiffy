@@ -3,7 +3,7 @@ import { PopUpOptionContext } from "../Contexts/PopUpOptionContext";
 
 function PopUpOptionContextProvider({children})
 {
-  let [PopUpOption, setPopUpOption] = useState({labelText: null, htmlFor: null, placeholder: null, id: null})
+  let [PopUpOption, setPopUpOption] = useState({labelText: null, htmlFor: null, placeholder: null})
 
   return(
 
