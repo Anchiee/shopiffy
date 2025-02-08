@@ -1,19 +1,13 @@
 import Input from "../Components/Input/Input";
 import AnimatedPage from "../Components/AnimatedPage/AnimatedPage";
 import Card from "../Components/ProductCard/Card";
-import axios from "axios"
-import { ProductContext } from "../Contexts/ProductsContext";
-import { useEffect, useContext, useState } from "react";
-import { CartContext } from "../Contexts/CartContext";
+import { useEffect, useState } from "react";
+import { useProducts } from "../Hooks/Product/useProduct";
 
 function Menu() {
   
-  const {products, setProducts} = useContext(ProductContext)
-  let [errorStatus, setErrorStatus] = useState(false)
+  const {products, request, errorStatus, isLoading} = useProducts()
 
-  const {cartProducts, setCartProducts} = useContext(CartContext)
-
-  let [isLoading, setIsLoading] = useState(true)
   let [searchProduct, setSearchProduct] = useState({
     product: null
   })
@@ -48,102 +42,26 @@ function Menu() {
 
 
   useEffect(() => {
-    if(!products || products.length == 0) {
-      axios
-      .get("http://192.168.0.13/shopiffy/server/endpoints/getproducts.php")
-      .then(response => {
-        console.log("Server response", response.data.products)
-        setProducts(response.data.products)
-        setIsLoading(false)
-        
-      })
-      .catch(error => {
-        console.log(error)
-        setIsLoading(false)
-      })
+    if(!products.length) {
+      request(null, "products", "getproducts")
     }
-    else {
-      setIsLoading(false)
-    }
-    
   }, [])
 
 
   useEffect(() => {
     console.log(products)
-
-    axios
-    .post("http://192.168.0.13/shopiffy/server/endpoints/getproductsbyfilter.php", filterOptions, {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    })
-    .then(response => {
-  
-      console.log("status", response.data)
-
-      if(response.data.status == "success") {
-        setErrorStatus(false)
-        setProducts(response.data.products)
-      }
-      else {
-        setErrorStatus(response.data.message)
-      }
-      
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
+    request(filterOptions, "product", "getproductsbyfilter")
   }, [filterOptions])
 
 
 
   const handleSearchProduct = (e) => {
     e.preventDefault()
-    axios
-    .post("http://192.168.0.13/shopiffy/server/endpoints/getproductinfobyname.php", searchProduct)
-    .then(response => {
-      console.log("response", response.data)
-      
-
-      if(response.data.status == "success") {
-        setErrorStatus(false)
-        setProducts(response.data.products);
-        console.log(products)
-      } 
-      else {
-        setErrorStatus(response.data.message)
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
-    console.log("Searching for a product:", searchProduct)
+    request(searchProduct, "product", "getproductinfobyname")
   }
 
   const addToCart = (productName) => {
-    const postData = {
-      model: productName
-    }
-
-    axios
-    .post("http://192.168.0.13/shopiffy/server/endpoints/cart.php", postData, {
-      withCredentials: true
-    })
-    .then(response => {
-      console.log(response.data)
-
-      if(response.data.status == "success"){
-        setCartProducts([...cartProducts, response.data.productAdded])
-        console.log(cartProducts)
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    console.log(postData.model)
+    request({model: productName}, "cart", "cart")
   }
 
 

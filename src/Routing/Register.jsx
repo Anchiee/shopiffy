@@ -1,75 +1,35 @@
 import Input from "../Components/Input/Input.jsx"
 import SolidButton from "../Components/Buttons/SolidButton/SolidButton.jsx"
 import { NavLink } from "react-router-dom"
-import axios from "axios"
-import {useContext, useState} from "react"
-import { useNavigate } from "react-router-dom"
-import { SessionContext } from "../Contexts/SessionContext.jsx"
 import IconContainer from "../Components/Icon-Container/IconContainer.jsx"
 import AnimatedPage from "../Components/AnimatedPage/AnimatedPage.jsx"
+import { useUser } from "../Hooks/Auth/useUser.jsx"
 
 function Register()
 {
-  const {setSession} = useContext(SessionContext)
-  const navigate = useNavigate()
-
-  let [user, setUser] = useState({
-    username: null, 
-    email: null, 
-    password: null, 
-    confirmPassword: null
-  })
-
-  
-  let [errorMessage, setErrorMessage] = useState("empty message")
-  let [errorStatus, setErrorStatus] = useState(false)
 
 
-  const handleSubmit = (e) => {
+  const {handleSubmit, handleInputChange, errorMessage, errorStatus} = useUser()
+
+  const onSubmit = (e) => {
     e.preventDefault()
-    axios
-    .post("http://192.168.0.13/shopiffy/server/endpoints/register.php", user, {
-      withCredentials: true,
-      headers: {
-        "Content-Type":"application/json"
-      }
-    })
-    .then(response => {
-      console.log(response.data)
-      
-      if(response.data.status === "error") {
-        setErrorMessage(response.data.message)
-        setErrorStatus(true)
-      }
-      else {
-        navigate("/menu")
-        setSession({
-          username: response.data.username, 
-          email: response.data.email})
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
+    handleSubmit("register", "/menu", "post")
   }
-
-  
-
 
 
   return(
     <AnimatedPage>
       <section className="flex justify-center items-center">
-        <form onSubmit={handleSubmit} method="post" 
+        <form onSubmit={onSubmit} method="post" 
         className="inline bg-slate-200 text-xl rounded-md py-5 md:py-8 px-8 md:px-24 mt-5 md:mt-10 shadow-gray-300-500/50 shadow-lg">
 
           <label htmlFor="username-input" className="font-bold text-base md:text-xl">Username</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your username" 
-          InputOnChange={(e) => setUser(u => ({...u, username: e.target.value}))} 
-          InputErrorStatus={errorStatus} InputId="username-input"/>
+          InputOnChange={(e) => handleInputChange(e)} 
+          InputErrorStatus={errorStatus} 
+          InputId="username"/>
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
           
@@ -77,19 +37,19 @@ function Register()
           <Input 
           InputType="password" 
           InputPlaceholder="Enter your password" 
-          InputOnChange={(e) => setUser(u => ({...u, password: e.target.value}))} 
+          InputOnChange={(e) => handleInputChange(e)} 
           InputErrorStatus={errorStatus} 
-          InputId="password-input"/>
+          InputId="password"/>
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
 
           <label htmlFor="email-input" className="font-bold text-base md::text-xl">Email</label>
           <Input 
-          InputType="text" 
+          InputType="email" 
           InputPlaceholder="Enter your email" 
-          InputOnChange={(e) => setUser(u => ({...u, email: e.target.value}))} 
+          InputOnChange={(e) => handleInputChange(e)} 
           InputErrorStatus={errorStatus} 
-          InputId="email-input"/>
+          InputId="email"/>
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
 

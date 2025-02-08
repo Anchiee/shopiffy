@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function ProductContextProvider({children})
 {
-  let [products, setProducts] = useState(null)
+  let [products, setProducts] = useState([])
 
   return(
 

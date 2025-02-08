@@ -3,62 +3,26 @@ import { SessionContext } from "../Contexts/SessionContext"
 import PopUp from "../Components/PopUp/Popup"
 import { PopUpContext } from "../Contexts/PopUpContext"
 import { PopUpOptionContext } from "../Contexts/PopUpOptionContext"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useUser } from "../Hooks/Auth/useUser"
 import AnimatedPage from "../Components/AnimatedPage/AnimatedPage"
 
 
 function Settings()
 { 
 
-  const {userSession, setSession} = useContext(SessionContext)
+  const {userSession} = useContext(SessionContext)
   const {setPopUpStatus} = useContext(PopUpContext)
   const {setPopUpOption} = useContext(PopUpOptionContext)
-  const navigate = useNavigate()
+  const {handleDeleteAccount, handleLogOut} = useUser()
 
   const showPopup = (PopUpLabelText, PopUphtmlFor, PopUpPlaceholder) => {
     setPopUpStatus(true)
     setPopUpOption({labelText: PopUpLabelText, htmlFor: PopUphtmlFor, placeholder: PopUpPlaceholder, id: PopUphtmlFor})
   }
 
-  const handleLogOut = (e) => {
-    e.preventDefault()
+  
 
-    axios
-    .delete("http://192.168.0.13/shopiffy/server/endpoints/logout.php", {
-      withCredentials: true
-    })
-    .then(response => {
-      if(response.data.status == "success") {
-        setSession({username:null, email:null})
-        navigate("/")
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
-
-  const handleDeleteAccount = (e) => {
-    
-    e.preventDefault()
-
-    axios
-    .delete("http://192.168.0.13/shopiffy/server/endpoints/deleteaccount.php", {
-      withCredentials: true
-    })
-    .then(response => {
-      console.log(response.data)
-      if(response.data.status == "success") {
-        setSession({username:null, email:null})
-        navigate("/")
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
-  }
+ 
 
 
   return(
@@ -94,21 +58,20 @@ function Settings()
           
 
           <div className="flex flex-row justify-around gap-8">
-            
-            <form onSubmit={handleLogOut} method="delete">
-            <button type="submit" className="font-Manrope cursor-pointer text-xs md:text-base bg-orange-300
-    py-3 px-7 md:px-10 font-bold w-full rounded-md transition-opacity  hover:opacity-70">
-                Log out
+            <div>
+              <button type="submit" className="font-Manrope cursor-pointer text-xs md:text-base bg-orange-300
+      py-3 px-7 md:px-10 font-bold w-full rounded-md transition-opacity  hover:opacity-70" onClick={handleLogOut}>
+                  Log out
               </button>
-            </form>
+            </div>          
 
-            <form onSubmit={handleDeleteAccount} method="delete">
+            <div>
               <button type="submit" className="font-Manrope cursor-pointer text-xs md:text-base bg-red-500
-    py-3 w-full font-bold rounded-md transition-opacity  hover:opacity-70">
+    py-3 w-full font-bold rounded-md transition-opacity  hover:opacity-70" onClick={handleDeleteAccount}>
                 Delete account
               </button>
               <p className="text-[.5rem] md:text-xs font-bold mt-2">WARNING! this option is permament</p>
-            </form>
+            </div>
           </div>
         </div>
 
