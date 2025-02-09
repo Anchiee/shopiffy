@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { useContext, useState } from "react"
 import {SessionContext} from "../../Contexts/SessionContext.jsx"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -7,12 +7,16 @@ import { faSearch, faBars, faRightFromBracket, faGear, faShoppingCart, faX } fro
 import AnimatedPage from "../AnimatedPage/AnimatedPage.jsx"
 import AnimatedNav from "../AnimatedNav/AnimatedNav.jsx"
 import { AnimatePresence } from "motion/react"
+import { useProducts } from "../../Hooks/Product/useProduct.jsx"
+
 
 function Navigation()
 {
   fontawesome.library.add(faSearch, faBars, faRightFromBracket, faGear, faShoppingCart, faX)
   const {userSession} = useContext(SessionContext)
   let [menu, setToggleMenu] = useState(false)
+  const path = useLocation()
+  const {handleInput, handleCategory, handleBrand, handleOs } = useProducts()
 
   return(
 
@@ -85,8 +89,101 @@ function Navigation()
                     <p className="inline text-base font-bold ml-1">Settings</p>
                 </NavLink>}
 
-                  
-                </nav> 
+                {userSession.username && path.pathname == "/menu" &&
+                  <div className="mt-14 flex flex-col gap-4 w-4/5 mx-auto">
+                    <input type="text" placeholder="Search a product" 
+                    className="block  py-2 pl-3 rounded-md bg-transparent-200 text-xs text-gray-400  
+                    outline-1 -outline-offset-1 outline-gray-700 placeholder-gray-400 box-border" 
+                    onChange={handleInput}/>
+
+                    <div>
+                      <label htmlFor="product-type" className="text-xs font-bold">
+                        Choose a category
+                      </label>
+                      <select
+                        name="product-type"
+                        id="product-category"
+                        className="text-xs rounded-lg py-1 block w-full  bg-transparent-300 outline-1 outline-gray-700 
+                        placeholder-gray-400"
+                        onChange={handleCategory}
+                      >
+                        <option value="none">None</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="tablets">Tablets</option>
+                        <option value="phones">Phones</option>
+                      </select>
+                    </div>
+
+
+                    <div className="flex flex-col">
+                      <label htmlFor="search-brand" className="text-xs font-bold">
+                        Choose a brand
+                      </label>
+                      <div className="overflow-auto max-h-20 flex flex-col gap-2">
+                      {[
+                        { label: "Samsung", value: "samsung" },
+                        { label: "Dell", value: "dell" },
+                        { label: "HP", value: "hp" },
+                        { label: "Apple", value: "apple" },
+                        { label: "Asus", value: "asus" },
+                        { label: "MSI", value: "msi" },
+                        { label: "Huawei", value: "huawei" },
+                      ].map((brand, index) => (
+                        <div className="inline-flex items-center" key={index}>
+                          <label className="flex items-center cursor-pointer relative" htmlFor={`check-${index}`}>
+                            <input
+                              value={brand.value}
+                              type="checkbox"
+                              className="peer h-4 w-4 bg-transparent-300 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-gray-700 checked:bg-blue-600 checked:border-blue-600"
+                              id={`check-${index}`}
+                              onChange={handleBrand}
+                            
+                            />
+                            <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-3.5 w-3.5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                stroke="currentColor"
+                                strokeWidth="1"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                ></path>
+                              </svg>
+                            </span>
+                          </label>
+                          <p className="text-xs mx-1">{brand.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>  
+
+                  <div className="flex flex-col w-full">
+                    <label className="text-xs font-bold" htmlFor="product-system">Operating systems</label>
+                    <select
+                      name="product-type"
+                      id="product-system"
+                      className="text-xs rounded-lg block py-1 bg-transparent-300 outline-1 outline-gray-700 placeholder-gray-400
+                      cursor-pointer"
+                      onChange={handleOs}
+                      >
+
+                      <option value="none">None</option>
+                      <option value="linux">Linux</option>
+                      <option value="windows">Windows</option>
+                      <option value="ios">iOS</option>
+                      <option value="android">Android</option>
+                    </select>
+                  </div>
+                </div>}
+
+
+                
+              </nav> 
               </AnimatedNav>
             
           </section>}

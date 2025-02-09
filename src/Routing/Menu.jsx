@@ -6,59 +6,15 @@ import { useProducts } from "../Hooks/Product/useProduct";
 
 function Menu() {
   
-  const {products, request, errorStatus, isLoading} = useProducts()
-
-  let [searchProduct, setSearchProduct] = useState({
-    product: null
-  })
-
-  let [filterOptions, setFilterOptions] = useState({
-    category: null,
-    brands: [],
-    os: null
-  })
-
-  const handleCategory = (e) => {
-    setFilterOptions({...filterOptions, category: e.target.value})
-  }
-
-  const handleBrand = (e) => {
-    const brandVal = e.target.value
-    let isChecked = e.target.checked
-
-    if(isChecked) {
-      setFilterOptions(prevState => ({...prevState, brands: [...prevState.brands, brandVal]}))
-    }
-    else {
-      setFilterOptions(prevState => ({...prevState, brands: 
-        prevState.brands.filter((brand) => brand !== brandVal)
-      }))
-    }
-  }
-
-  const handleOs = (e) => {
-    setFilterOptions({...filterOptions, os: e.target.value})
-  }
+  const {products, request, errorStatus, isLoading, handleCategory, handleBrand, handleOs,
+    handleSearchProduct, handleInput
+   } = useProducts()
 
 
   useEffect(() => {
       //its a get request since null is passed to data
       request(null, "product", "getproducts")
   }, [])
-
-
-  useEffect(() => {
-    console.log(products)
-    request(filterOptions, "product", "getproductsbyfilter")
-    
-  }, [filterOptions])
-
-
-
-  const handleSearchProduct = (e) => {
-    e.preventDefault()
-    request(searchProduct, "product", "getproductinfobyname")
-  }
 
   const addToCart = (productName) => {
     request({model: productName}, "cart", "cart")
@@ -74,11 +30,11 @@ function Menu() {
         <AnimatedPage>
           <div className="flex">
             {/* filter section*/}
-            <section className="flex flex-col gap-6 text-xl w-1/5 text-gray-600 pl-6 pr-3 border-r-2 border-gray-300">
+            <section className="hidden md:flex flex-col gap-6 text-xl w-1/5 text-gray-600 pl-6 pr-3 border-r-2 border-gray-300">
               {/* Search Form */}
               <form className="w-full my-3 flex flex-row gap-5" method="post" onSubmit={handleSearchProduct}>
                 <Input InputPlaceholder="Search a product" 
-                InputOnChange={(e) => setSearchProduct({product: e.target.value})} />
+                InputOnChange={handleInput} />
               </form>
 
               {/* Category Selector */}
@@ -150,7 +106,7 @@ function Menu() {
 
               {/* Operating System Selector */}
               <div className="flex flex-col py-6">
-                <label className="text-base font-bold">Operating systems</label>
+                <label className="text-base font-bold" htmlFor="product-type">Operating systems</label>
                 <select
                   name="product-type"
                   id="product-type"
@@ -169,7 +125,7 @@ function Menu() {
             </section>
 
             {/* Products Content */}
-            <section className="py-6 px-5  overflow-auto w-full max-h-[38.2rem]">
+            <section className="py-6 px-5  overflow-auto w-full max-h-[35rem] md:max-h-[38.2rem]">
               
                 {errorStatus && 
                   <div className="flex justify-center items-center h-full">
@@ -189,7 +145,7 @@ function Menu() {
                 {!isLoading && !errorStatus && (
                   
                     <AnimatedPage>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       {products.map((product, index) => (
                       <Card CardPath={product.path} CardName={product.model} CardDescription={product.description}
                       CardPrice={product.price} ButtonText="Add to cart" ButtonFunc={() => {addToCart(product.model)}} key={index}/>

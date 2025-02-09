@@ -74,7 +74,7 @@ function PopUp()
                 InputErrorStatus={errorStatus} 
                 InputType={PopUpOption.labelText == "NEW PASSWORD" ? "password" : 
                 PopUpOption.labelText == "EMAIL" ? "email" : "text"} 
-                InputId={PopUpOption.id} 
+                InputId={PopUpOption.htmlFor} 
                 InputOnChange={(e) => {setUserData(prevState => ({...prevState, newInfo: e.target.value}))}} 
                 InputValue={UserData.newInfo || ""}/>
                 

@@ -3,20 +3,20 @@ import PropTypes from "prop-types"
 function Card(props)
 {
   return(
-  <div className="w-full max-w-sm bg-slate-300  rounded-lg shadow-sm hover:shadow-xl
+  <div className="bg-slate-300  rounded-lg shadow-sm hover:shadow-xl
   cursor-pointer transition-all">
     <img 
-    className="rounded-t-lg pl-5 py-7 h-1/2"  
-    src={props.CardPath} alt="product image" width="200"/>
+    className="rounded-lg pl-5 py-7 h-1/2 w-32 md:w-48"  
+    src={props.CardPath} alt="product image"/>
     <div className="px-5">
-        <h2 className="text-base font-semibold tracking-tight text-softBlack">{props.CardName}</h2>
-        <p className="mt-1 mb-4">{props.CardDescription}</p>
+        <h2 className="text-xs md:text-base font-semibold tracking-tight text-softBlack">{props.CardName}</h2>
+        <p className="mt-1 mb-4 text-xs md:text-base ">{props.CardDescription}</p>
       
       <div className="flex items-center justify-between">
-          <span className="text-lg font-bold  text-softBlack">{props.CardPrice}$</span>
+          <span className="text-base md:text-lg font-bold  text-softBlack">{props.CardPrice}$</span>
           <button 
           className="text-white bg-blue-700 hover:bg-blue-800
-          font-medium font-Manrope rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer transition-all hover:opacity-80 active:opacity-70"
+          font-medium font-Manrope rounded-lg text-[.6rem] md:text-sm px-1 md:px-5 py-2.5 text-center cursor-pointer transition-all hover:opacity-80 active:opacity-70"
           onClick={props.ButtonFunc}
           >
             {props.ButtonText}

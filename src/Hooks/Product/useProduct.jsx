@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../Contexts/CartContext";
 import { ProductContext } from "../../Contexts/ProductsContext";
 import axios from "axios";
@@ -10,6 +10,62 @@ export function useProducts()
   const {cartProducts, setCartProducts} = useContext(CartContext)
   let [isLoading, setIsLoading] = useState(true)
   let [errorStatus, setErrorStatus] = useState(false)
+
+  let [searchProduct, setSearchProduct] = useState({
+    product: null
+  })
+
+  let [filterOptions, setFilterOptions] = useState({
+    category: null,
+    brands: [],
+    os: null
+  })
+
+  const handleCategory = (e) => {
+    setFilterOptions({...filterOptions, category: e.target.value})
+  }
+
+  const handleBrand = (e) => {
+    const brandVal = e.target.value
+    let isChecked = e.target.checked
+
+    if(isChecked) {
+      setFilterOptions(prevState => ({...prevState, brands: [...prevState.brands, brandVal]}))
+    }
+    else {
+      setFilterOptions(prevState => ({...prevState, brands: 
+        prevState.brands.filter((brand) => brand !== brandVal)
+      }))
+    }
+  }
+
+  const handleInput = (e) => {
+    setSearchProduct({product: e.target.value})
+  }
+
+  const handleOs = (e) => {
+    setFilterOptions({...filterOptions, os: e.target.value})
+  }
+
+  useEffect(() => {
+      console.log(products)
+      request(filterOptions, "product", "getproductsbyfilter")
+      
+    }, [filterOptions])
+
+    useEffect(() => {
+      console.log(products)
+      request(searchProduct, "product", "getproductinfobyname")
+      
+    }, [searchProduct])
+
+
+    const handleSearchProduct = (e) => {
+      e.preventDefault()
+      request(searchProduct, "product", "getproductinfobyname")
+    }
+
+
 
   const request = (data, type, endpoint) => {
     const method = data ? "post" : "get"
@@ -65,6 +121,8 @@ export function useProducts()
     })
   }
 
-  return {request, removeFromCart, setIsLoading, setCartProducts, errorStatus, products, setProducts, cartProducts, isLoading}
+  return {request, removeFromCart, setIsLoading, handleCategory, handleBrand, handleInput, 
+    handleOs, handleSearchProduct, setCartProducts, errorStatus, products, setProducts, cartProducts, 
+    isLoading}
 
 }

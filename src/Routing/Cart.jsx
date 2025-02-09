@@ -37,9 +37,9 @@ function Cart()
       {!cartProducts.length && !isLoading &&
         <div className="flex justify-center items-center h-5/6">
           <AnimatedPage>
-              <img src={"src/assets/emptycart.png"} alt="empty cart" width="200"/>
-              <h1 className="font-bold text-2xl my-3">Oops... no products found.</h1>
-              <p>Add some products in the menu page!</p>
+              <img src={"src/assets/emptycart.png"} alt="empty cart" className="w-24 md:w-52" />
+              <h1 className="font-bold text-lg md:text-2xl my-3">Oops... no products found.</h1>
+              <p className="text-xs md:text-base">Add some products in the menu page!</p>
           </AnimatedPage>
         </div>
       }
@@ -52,7 +52,7 @@ function Cart()
 
       {cartProducts.length > 0 && !isLoading && 
         <AnimatedPage>
-          <div className="py-6 px-10 grid grid-cols-3  gap-6 max-h-150 overflow-auto w-full">
+          <div className="py-6 px-10 grid grid-cols-1 md:grid-cols-3  gap-6 max-h-[34.5rem] md:max-h-[38rem] overflow-auto w-full">
           {cartProducts.map((product, index) => {
             return(
             <Card 
