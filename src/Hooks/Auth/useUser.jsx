@@ -35,9 +35,6 @@ export function useUser() {
       case "post":
         axiosRequest = axios.post
         break
-      case "delete":
-        axiosRequest = axios.delete
-        break
     }
 
     

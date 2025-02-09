@@ -12,8 +12,10 @@ export function useProducts()
   let [errorStatus, setErrorStatus] = useState(false)
 
   const request = (data, type, endpoint) => {
-    axios
-    .post(`http://192.168.0.13/shopiffy/server/endpoints/product/${endpoint}.php`, data)
+    const method = data ? "post" : "get"
+    const url = `http://192.168.0.13/shopiffy/server/endpoints/product/${endpoint}.php`
+    
+    axios[method](url, data, {withCredentials: true})
     .then(response => {
       console.log("response", response.data)
       
@@ -28,16 +30,16 @@ export function useProducts()
           else {
             setErrorStatus(response.data.message)
           }
-          setIsLoading(false)
           break
         case "cart":
           if(response.data.status == "success"){
             setCartProducts([...cartProducts, response.data.productAdded])
             console.log(cartProducts)
           }
-          setIsLoading(false)
           break
       }
+
+      setIsLoading(false)
 
 
     })
@@ -46,6 +48,23 @@ export function useProducts()
     })
   }
 
-  return {request, errorStatus, products, setProducts, cartProducts, isLoading}
+  const removeFromCart = (model) => {
+    axios
+    .delete("http://192.168.0.13/shopiffy/server/endpoints/product/cart.php", {
+      data: {model: model},
+      withCredentials: true
+    })
+    .then(response => {
+      console.log(response)
+      if(response.data.status == "success") {
+        setCartProducts(cartProducts.filter(product => product.model !== response.data.model))
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  return {request, removeFromCart, setIsLoading, setCartProducts, errorStatus, products, setProducts, cartProducts, isLoading}
 
 }

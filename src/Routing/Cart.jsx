@@ -1,13 +1,12 @@
 import AnimatedPage from "../Components/AnimatedPage/AnimatedPage"
 import Card from "../Components/ProductCard/Card"
-import { useContext, useEffect, useState } from "react"
-import { CartContext } from "../Contexts/CartContext"
+import {  useEffect } from "react"
 import axios from "axios"
+import {useProducts} from "../Hooks/Product/useProduct"
 
 function Cart()
 {
-  let {cartProducts, setCartProducts} = useContext(CartContext)
-  let [isLoading, setIsLoading] = useState(true)
+  const {cartProducts, isLoading, removeFromCart, setCartProducts, setIsLoading} = useProducts()
 
 
 
@@ -28,23 +27,6 @@ function Cart()
     })
 
   }, [])
-
-  const removeFromCart = (model) => {
-    axios
-    .delete("http://192.168.0.13/shopiffy/server/endpoints/product/cart.php", {
-      data: {model: model},
-      withCredentials: true
-    })
-    .then(response => {
-      console.log(response)
-      if(response.data.status == "success") {
-        setCartProducts(cartProducts.filter(product => product.model !== response.data.model))
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
 
 
 

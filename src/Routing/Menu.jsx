@@ -42,15 +42,15 @@ function Menu() {
 
 
   useEffect(() => {
-    if(!products.length) {
-      request(null, "products", "getproducts")
-    }
+      //its a get request since null is passed to data
+      request(null, "product", "getproducts")
   }, [])
 
 
   useEffect(() => {
     console.log(products)
     request(filterOptions, "product", "getproductsbyfilter")
+    
   }, [filterOptions])
 
 
