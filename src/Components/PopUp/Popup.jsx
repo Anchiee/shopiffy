@@ -74,25 +74,25 @@ function PopUp()
                 InputErrorStatus={errorStatus} 
                 InputType={PopUpOption.labelText == "NEW PASSWORD" ? "password" : 
                 PopUpOption.labelText == "EMAIL" ? "email" : "text"} 
-                InputId={PopUpOption.htmlFor} 
+                InputId={PopUpOption.labelText == "NEW PASSWORD" ? "newPassword" : PopUpOption.htmlFor} 
                 InputOnChange={(e) => {setUserData(prevState => ({...prevState, newInfo: e.target.value}))}} 
                 InputValue={UserData.newInfo || ""}/>
                 
-                <p className={errorStatus ? "mb-5 text-red-400 visible text-xs md:text-lg" : "invisible"}>{errorMessage}</p>
+                <p className={errorStatus ? "mb-5 text-red-400 visible text-xs" : "invisible"}>{errorMessage}</p>
               </div>
               
               <div className="my-6 block">
                 <label htmlFor="password"  className="text-xs md:text-base font-bold">PASSWORD</label>
                 
                 <Input 
-                InputPlaceholder={PopUpOption.labelText == "PASSWORD" ? "Enter new password" : "Enter your password"} 
+                InputPlaceholder="Enter your password" 
                 InputOnChange={(e) => {setUserData(prevState => ({...prevState, password: e.target.value}))}} 
                 InputType="password" 
                 InputId="password" 
                 InputValue={UserData.password || ""} 
                 InputErrorStatus={errorStatus}/>
                 
-                <p className={errorStatus ? "mb-5 text-red-400 visible text-xs md:text-lg6" : "invisible"}>{errorMessage}</p>
+                <p className={errorStatus ? "mb-5 text-red-400 visible text-xs" : "invisible"}>{errorMessage}</p>
               </div>
 
               <button type="button" className="mx-5 cursor-pointer text-xs md:text-base" onClick={hidePopUp}>Close</button>

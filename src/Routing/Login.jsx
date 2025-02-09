@@ -20,7 +20,7 @@ function Login()
         <form onSubmit={onSubmit} method="post" 
         className="inline bg-slate-200 text-xl rounded-md py-10 px-8 md:px-24 mt-20 shadow-gray-300-500/50 shadow-lg">
       
-          <label htmlFor="username-input" className="font-bold text-base md:text-xl">Username</label>
+          <label htmlFor="username" className="font-bold text-base md:text-xl">Username</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your username" 
@@ -28,9 +28,9 @@ function Login()
           InputErrorStatus={errorStatus} 
           InputId="username"/>
           
-          <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0" : "invisible"}>{errorMessage}</p>
 
-          <label htmlFor="password-input" className="font-bold text-base md:text-xl">Password</label>
+          <label htmlFor="password" className="font-bold text-base md:text-xl">Password</label>
           <Input 
           InputType="password" 
           InputPlaceholder="Enter your password"  
@@ -38,7 +38,7 @@ function Login()
           InputErrorStatus={errorStatus} 
           InputId="password"/>
 
-          <p className={errorStatus ? "mb-8 text-red-400 visible text-xs md:text-lg" : "invisible"}>{errorMessage}</p>
+          <p className={errorStatus ? "mb-8 text-red-400 visible text-xs" : "invisible"}>{errorMessage}</p>
 
           <SolidButton ButtonType="submit"  ButtonText="Log-in"/>
 

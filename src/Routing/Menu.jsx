@@ -1,7 +1,7 @@
 import Input from "../Components/Input/Input";
 import AnimatedPage from "../Components/AnimatedPage/AnimatedPage";
 import Card from "../Components/ProductCard/Card";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useProducts } from "../Hooks/Product/useProduct";
 
 function Menu() {
@@ -32,19 +32,19 @@ function Menu() {
             {/* filter section*/}
             <section className="hidden md:flex flex-col gap-6 text-xl w-1/5 text-gray-600 pl-6 pr-3 border-r-2 border-gray-300">
               {/* Search Form */}
-              <form className="w-full my-3 flex flex-row gap-5" method="post" onSubmit={handleSearchProduct}>
+              <form className="w-full my-3 flex flex-row gap-5" onSubmit={handleSearchProduct}>
                 <Input InputPlaceholder="Search a product" 
-                InputOnChange={handleInput} />
+                InputOnChange={handleInput} 
+                InputId="product-search"/>
               </form>
 
               {/* Category Selector */}
               <div className="flex flex-col">
-                <label htmlFor="product-type" className="text-base font-bold">
+                <label htmlFor="product-category" className="text-base font-bold">
                   Choose a category
                 </label>
                 <select
-                  name="product-type"
-                  id="product-type"
+                  id="product-category"
                   className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400 
                   cursor-pointer"
                   onChange={handleCategory}
@@ -58,9 +58,9 @@ function Menu() {
 
               {/* Brand Selector */}
               <div className="flex flex-col">
-                <label htmlFor="search-brand" className="text-base font-bold">
+                <p className="text-base font-bold">
                   Choose a brand
-                </label>
+                </p>
                 <div className="overflow-auto max-h-40 flex flex-col">
                   {[
                     { label: "Samsung", value: "samsung" },
@@ -72,7 +72,7 @@ function Menu() {
                     { label: "Huawei", value: "huawei" },
                   ].map((brand, index) => (
                     <div className="inline-flex items-center" key={index}>
-                      <label className="flex items-center cursor-pointer relative">
+                      <label className="flex items-center cursor-pointer relative" htmlFor={`check-${index}`}>
                         <input
                           value={brand.value}
                           type="checkbox"
@@ -98,7 +98,7 @@ function Menu() {
                           </svg>
                         </span>
                       </label>
-                      <label className="text-base mx-1">{brand.label}</label>
+                      <p className="text-base mx-1">{brand.label}</p>
                     </div>
                   ))}
                 </div>
@@ -106,10 +106,9 @@ function Menu() {
 
               {/* Operating System Selector */}
               <div className="flex flex-col py-6">
-                <label className="text-base font-bold" htmlFor="product-type">Operating systems</label>
+                <label className="text-base font-bold" htmlFor="product-os">Operating systems</label>
                 <select
-                  name="product-type"
-                  id="product-type"
+                  id="product-os"
                   className="text-base rounded-lg block w-full p-2.5 bg-slate-300 outline-none placeholder-gray-400
                   cursor-pointer"
                   onChange={handleOs}

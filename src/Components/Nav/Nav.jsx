@@ -91,18 +91,21 @@ function Navigation()
 
                 {userSession.username && path.pathname == "/menu" &&
                   <div className="mt-14 flex flex-col gap-4 w-4/5 mx-auto">
+
+                    {/* Search Form */}
                     <input type="text" placeholder="Search a product" 
                     className="block  py-2 pl-3 rounded-md bg-transparent-200 text-xs text-gray-400  
                     outline-1 -outline-offset-1 outline-gray-700 placeholder-gray-400 box-border" 
-                    onChange={handleInput}/>
+                    onChange={handleInput}
+                    id="product-search-mobile"/>
 
+                    {/* Category Selector */}
                     <div>
-                      <label htmlFor="product-type" className="text-xs font-bold">
+                      <label htmlFor="product-category-mobile" className="text-xs font-bold">
                         Choose a category
                       </label>
                       <select
-                        name="product-type"
-                        id="product-category"
+                        id="product-category-mobile"
                         className="text-xs rounded-lg py-1 block w-full  bg-transparent-300 outline-1 outline-gray-700 
                         placeholder-gray-400"
                         onChange={handleCategory}
@@ -116,9 +119,9 @@ function Navigation()
 
 
                     <div className="flex flex-col">
-                      <label htmlFor="search-brand" className="text-xs font-bold">
+                      <p className="text-xs font-bold">
                         Choose a brand
-                      </label>
+                      </p>
                       <div className="overflow-auto max-h-20 flex flex-col gap-2">
                       {[
                         { label: "Samsung", value: "samsung" },
@@ -130,12 +133,12 @@ function Navigation()
                         { label: "Huawei", value: "huawei" },
                       ].map((brand, index) => (
                         <div className="inline-flex items-center" key={index}>
-                          <label className="flex items-center cursor-pointer relative" htmlFor={`check-${index}`}>
+                          <label className="flex items-center cursor-pointer relative" htmlFor={`check-mobile-${index}`}>
                             <input
                               value={brand.value}
                               type="checkbox"
                               className="peer h-4 w-4 bg-transparent-300 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-gray-700 checked:bg-blue-600 checked:border-blue-600"
-                              id={`check-${index}`}
+                              id={`check-mobile-${index}`}
                               onChange={handleBrand}
                             
                             />
@@ -163,10 +166,9 @@ function Navigation()
                   </div>  
 
                   <div className="flex flex-col w-full">
-                    <label className="text-xs font-bold" htmlFor="product-system">Operating systems</label>
+                    <label className="text-xs font-bold" htmlFor="product-system-mobile">Operating systems</label>
                     <select
-                      name="product-type"
-                      id="product-system"
+                      id="product-system-mobile"
                       className="text-xs rounded-lg block py-1 bg-transparent-300 outline-1 outline-gray-700 placeholder-gray-400
                       cursor-pointer"
                       onChange={handleOs}

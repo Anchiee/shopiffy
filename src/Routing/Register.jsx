@@ -23,7 +23,7 @@ function Register()
         <form onSubmit={onSubmit} method="post" 
         className="inline bg-slate-200 text-xl rounded-md py-5 md:py-8 px-8 md:px-24 mt-5 md:mt-10 shadow-gray-300-500/50 shadow-lg">
 
-          <label htmlFor="username-input" className="font-bold text-base md:text-xl">Username</label>
+          <label htmlFor="username" className="font-bold text-base md:text-xl">Username</label>
           <Input 
           InputType="text" 
           InputPlaceholder="Enter your username" 
@@ -33,7 +33,7 @@ function Register()
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
           
-          <label htmlFor="password-input" className="font-bold text-base md:text-xl">Password</label>
+          <label htmlFor="password" className="font-bold text-base md:text-xl">Password</label>
           <Input 
           InputType="password" 
           InputPlaceholder="Enter your password" 
@@ -43,7 +43,7 @@ function Register()
           
           <p className={errorStatus ? "mb-5 text-red-400 visible text-xs mx-0 py-0 md:text-lg" : "invisible"}>{errorMessage}</p>
 
-          <label htmlFor="email-input" className="font-bold text-base md::text-xl">Email</label>
+          <label htmlFor="email" className="font-bold text-base md::text-xl">Email</label>
           <Input 
           InputType="email" 
           InputPlaceholder="Enter your email" 
